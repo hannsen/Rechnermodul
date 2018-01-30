@@ -11,13 +11,13 @@ Kleinstweich Deutschland GmbH (KWD)
 Code5Monkeys
 
 ### Leistungsziel (Projektbegründung rückseitig):
-Der klassische, im Betriebssystemumfeld integrierte, Taschenrechner ist zu unflexibel. Das zwischenspeichern von Ergebnissen in Textform ist zu umständlich. Es ist eine spezialisierte, modulare Softwarelösung gewünscht, um auf individuelle Bedürfnisse einzugehen.
+Der klassische, im Betriebssystemumfeld integrierte, Taschenrechner ist zu unflexibel. Das Zwischenspeichern von Ergebnissen in Textform ist zu umständlich. Es ist eine spezialisierte, modulare Softwarelösung gewünscht, um auf individuelle Bedürfnisse einzugehen.
 
-Während der gesamten Projektdauer wird ständig mit dem Kunden Rücksprache gehalten, um auf dessen individuellen Bedürfnisse einzugehen und den jeweiligen Stand zu mit den Projektanforderungen abzugleichen.
+Während der gesamten Projektdauer wird ständig mit dem Kunden Rücksprache gehalten, um auf dessen individuelle Bedürfnisse einzugehen und den jeweiligen Stand mit den Projektanforderungen abzugleichen.
 
 Damit alle Teilaspekte des Projektes bestmöglich umgesetzt werden können, wurde ein Expertenteam von 5 Spezialisten unterschiedlicher Fachgebiete zusammengestellt, denn um eine zeitgerechte Umsetzung des Projekts zu gewährleisten ist eine Arbeitsweise im Team unabdingbar.
 
-Das Gesamtprojekt wird in Teilprojekte untergliedert, welche jeweils von den bestqualifizierten, unternehmensinternen Mitarbeitern bearbeitet werden.
+Das Gesamtprojekt wird in Teilprojekte untergliedert, welche jeweils von den bestqualifizierten unternehmensinternen Mitarbeitern bearbeitet werden.
 ### Terminziel:
 06/2018
 
