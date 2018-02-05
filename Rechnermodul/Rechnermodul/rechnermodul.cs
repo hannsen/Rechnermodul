@@ -1,0 +1,33 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace Rechnermodul
+{
+    public partial class rechnermodul : Form
+    {
+        private Type[] modules; 
+
+        public rechnermodul()
+        {
+            InitializeComponent();
+        }
+
+        private void rechnermodul_Load(object sender, EventArgs e)
+        {
+            string[] modulesToLoad = new string[] {
+                ""
+            };
+
+            foreach (string dllPath in modulesToLoad) {
+                ;
+            }
+        }
+    }
+}

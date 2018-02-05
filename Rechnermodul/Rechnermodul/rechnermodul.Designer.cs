@@ -1,6 +1,6 @@
 ﻿namespace Rechnermodul
 {
-    partial class Form1
+    partial class rechnermodul
     {
         /// <summary>
         /// Erforderliche Designervariable.
@@ -28,9 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // rechnermodul
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Text = "Form1";
+            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.Name = "rechnermodul";
+            this.Text = "Startfenster";
+            this.Load += new System.EventHandler(this.rechnermodul_Load);
+            this.ResumeLayout(false);
+
         }
 
         #endregion
