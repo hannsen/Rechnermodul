@@ -12,9 +12,18 @@ namespace Rechnermodul
 {
     public partial class rechnermodul : Form
     {
+        private Type[] modules; 
+
         public rechnermodul()
         {
             InitializeComponent();
+        }
+
+        private void rechnermodul_Load(object sender, EventArgs e)
+        {
+            string[] modulesToLoad = new string[] {
+                ""
+            };
         }
     }
 }

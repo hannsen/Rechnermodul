@@ -37,6 +37,7 @@
             this.ClientSize = new System.Drawing.Size(284, 261);
             this.Name = "rechnermodul";
             this.Text = "Startfenster";
+            this.Load += new System.EventHandler(this.rechnermodul_Load);
             this.ResumeLayout(false);
 
         }
