@@ -24,6 +24,10 @@ namespace Rechnermodul
             string[] modulesToLoad = new string[] {
                 ""
             };
+
+            foreach (string dllPath in modulesToLoad) {
+                ;
+            }
         }
     }
 }
