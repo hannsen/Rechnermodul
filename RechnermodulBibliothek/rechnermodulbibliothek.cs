@@ -18,7 +18,7 @@ namespace RechnermodulBibliothek
     /// <summary>
     ///  Die Beschreibung einer Funktion eines Modules
     /// </summary>
-    private class FunctionDescription : FunctionDescriptionInterface {
+    public class FunctionDescription : FunctionDescriptionInterface {
 
         private int id;
         private string name;
@@ -84,7 +84,7 @@ namespace RechnermodulBibliothek
         /// <param name="key">Der Schlüssel, unter welchem der eingegebene Wert später abgerufen werden kann</param>
         /// <param name="description">Die Beschreibung für das Eingabefeld, welche dem Nutzer angezeigt wird</param>
         /// <param name="validator">Ein Callback welches entscheidet, ob die Eingabe angenommen wird</param>
-        public void addStringInput(string key, string description, CheckCallback validator);
+        void addStringInput(string key, string description, CheckCallback validator);
 
         /// <summary>
         ///  Diese Methode dient dazu, ein Eingabefeld für mehrere Werte hinzuzufügen
@@ -92,7 +92,7 @@ namespace RechnermodulBibliothek
         /// <param name="key">Der Schlüssel, unter welchem die eingegebenen Weret später abgerufen werden können</param>
         /// <param name="description">Die Beschreibung für das Eingabefeld, welche dem Nutzer angezeigt wird</param>
         /// <param name="validator">Ein Callback, welches für jeden einzelnen eingebenen Wert entscheidet, ob er angenommen wird</param>
-        public void addStringArrayInput(string key, string description, CheckCallback validator);
+        void addStringArrayInput(string key, string description, CheckCallback validator);
     }
 
     /// <summary>
@@ -104,14 +104,14 @@ namespace RechnermodulBibliothek
         /// </summary>
         /// <param name="key">Der Schlüssel, unter welchem der Wert gespeichert wurde</param>
         /// <returns>Der vom Nutzer eingegebene Wert</returns>
-        public string getStringValue(string key);
+        string getStringValue(string key);
 
         /// <summary>
         ///  Diese Methode dient dazu, eine Sammlung von Werten, welche der Nutzer eingegeben hat auszulesen.
         /// </summary>
         /// <param name="key">Der Schlüssel, unter welchem die Werte gespeichert wurden</param>
         /// <returns>Eine List mit den vom Nutzer eingegebenen Werten</returns>
-        public string[] getStringArray(string key);
+        string[] getStringArray(string key);
     }
 
     /// <summary>
@@ -123,31 +123,57 @@ namespace RechnermodulBibliothek
         ///  Funktion benötigt vorzubereiten
         /// </summary>
         /// <param name="builder">Der Ersteller für die Benutzeroberfläche</param>
-        public void buildUI(UIBuilderInterface builder);
+        public abstract void buildUI(UIBuilderInterface builder);
 
         /// <summary>
         ///  Diese Methode verarbeitet die vom Nutzer eingegebenen Daten und gibt das Ergebnis als Zeichenkette zurück
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
-        public string calculate(UserDataInterface data);
+        public abstract string calculate(UserDataInterface data);
     }
 
     /// <summary>
     ///  Diese Klasse repräsentiert ein Modul des Rechners mit verschiedenen Funktionen
     /// </summary>
     public abstract class AbstractModule : ModulInterface {
+
+        private string name;
+        private string description;
+        private List<AbstractFunction> functions = new List<AbstractFunction>();
+        private List<FunctionDescription> functionDescs = new List<FunctionDescription>();
+
+        string RechnermodulBibliothek.ModulInterface.getFriendlyName()
+        {
+            return this.name;
+        }
+
+        string RechnermodulBibliothek.ModulInterface.getModuleDescription()
+        {
+            return this.description;
+        }
+
+        FunctionDescriptionInterface[] RechnermodulBibliothek.ModulInterface.getFunctions()
+        {
+            return this.functionDescs.ToArray();
+        }
+
         /// <summary>
         ///  Diese Methode setzt den Namen des Moduls
         /// </summary>
         /// <param name="name">Der Name des Moduls</param>
-        private void setName(string name);
+        protected void setName(string name)
+        {
+            this.name = name;
+        }
 
         /// <summary>
         ///  Diese Methode setzt die BEschreibung des Moduls
         /// </summary>
         /// <param name="description">Die Beschreibung des Moduls</param>
-        private void setDescription(string description);
+        protected void setDescription(string description) {
+            this.description = description;
+        }
 
         /// <summary>
         ///  Diese Methode fügt eine Funktion zu dem Modul hinzu
@@ -155,6 +181,11 @@ namespace RechnermodulBibliothek
         /// <param name="name">Der Name der Funktion</param>
         /// <param name="description">Die Beschreibung der Funktion</param>
         /// <param name="function">Die Funktion selbst</param>
-        private void addFunction(string name, string description, AbstractFunction function);
+        protected void addFunction(string name, string description, AbstractFunction function) {
+            this.functions.Add(function);
+
+            FunctionDescription desc = new FunctionDescription(this.functionDescs.Count, name, description);
+            this.functionDescs.Add(desc);
+        }
     }
 }
