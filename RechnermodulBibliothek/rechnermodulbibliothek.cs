@@ -6,12 +6,18 @@ using System.Threading.Tasks;
 
 namespace RechnermodulBibliothek
 {
+    /// <summary>
+    ///  Ein Interface für die Beschreibung einer Funktion eines Modules
+    /// </summary>
     public interface FunctionDescriptionInterface {
         int getId();
         string getName();
         string getDescription();
     }
 
+    /// <summary>
+    ///  Die Beschreibung einer Funktion eines Modules
+    /// </summary>
     private class FunctionDescription : FunctionDescriptionInterface {
 
         private int id;
@@ -41,6 +47,9 @@ namespace RechnermodulBibliothek
         }
     }
 
+    /// <summary>
+    ///  Das Interface eines Modules
+    /// </summary>
     public interface ModulInterface {
         string getFriendlyName();
 
