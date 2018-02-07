@@ -55,9 +55,9 @@ namespace RechnermodulBibliothek
 
         string getModuleDescription();
 
-        FunctionDescriptionInterface[] getFunctions();
+        FunctionDescriptionInterface[] getFunctionDescriptions();
 
-
+        FunctionInterface[] getFunctions();
     }
 
  
@@ -93,6 +93,47 @@ namespace RechnermodulBibliothek
         /// <param name="description">Die Beschreibung für das Eingabefeld, welche dem Nutzer angezeigt wird</param>
         /// <param name="validator">Ein Callback, welches für jeden einzelnen eingebenen Wert entscheidet, ob er angenommen wird</param>
         void addStringArrayInput(string key, string description, CheckCallback validator);
+
+        UIElement[] getUIElements();
+    }
+
+    public class UIElement
+    {
+        public const int TYPE_SINGLE = 0;
+        public const int TYPE_ARRAY = 1;
+
+        private int type;
+        private string key;
+        private string description;
+        private CheckCallback validator;
+
+        public UIElement(int type, string key, string description, CheckCallback validator)
+        {
+            this.type = type;
+            this.key = key;
+            this.description = description;
+            this.validator = validator;
+        }
+
+        public int getType()
+        {
+            return this.type;
+        }
+
+        public string getKey()
+        {
+            return this.key;
+        }
+
+        public string getDescription()
+        {
+            return this.description;
+        }
+
+        public CheckCallback getValidator()
+        {
+            return this.validator;
+        }
     }
 
     /// <summary>
@@ -115,22 +156,22 @@ namespace RechnermodulBibliothek
     }
 
     /// <summary>
-    ///  Diese Klasse repräsentiert eine Funktion eines Moduls
+    ///  Dieses Interface repräsentiert eine Funktion eines Moduls
     /// </summary>
-    public abstract class AbstractFunction {
+    public interface FunctionInterface {
         /// <summary>
         ///  Diese Methode dient dazu, die Benutzeroberfläche für die Eingabe der Daten, welche die
         ///  Funktion benötigt vorzubereiten
         /// </summary>
         /// <param name="builder">Der Ersteller für die Benutzeroberfläche</param>
-        public abstract void buildUI(UIBuilderInterface builder);
+        void buildUI(UIBuilderInterface builder);
 
         /// <summary>
         ///  Diese Methode verarbeitet die vom Nutzer eingegebenen Daten und gibt das Ergebnis als Zeichenkette zurück
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
-        public abstract string calculate(UserDataInterface data);
+        string calculate(UserDataInterface data);
     }
 
     /// <summary>
@@ -140,7 +181,7 @@ namespace RechnermodulBibliothek
 
         private string name;
         private string description;
-        private List<AbstractFunction> functions = new List<AbstractFunction>();
+        private List<FunctionInterface> functions = new List<FunctionInterface>();
         private List<FunctionDescription> functionDescs = new List<FunctionDescription>();
 
         string RechnermodulBibliothek.ModulInterface.getFriendlyName()
@@ -153,9 +194,14 @@ namespace RechnermodulBibliothek
             return this.description;
         }
 
-        FunctionDescriptionInterface[] RechnermodulBibliothek.ModulInterface.getFunctions()
+        FunctionDescriptionInterface[] RechnermodulBibliothek.ModulInterface.getFunctionDescriptions()
         {
             return this.functionDescs.ToArray();
+        }
+
+        FunctionInterface[] RechnermodulBibliothek.ModulInterface.getFunctions()
+        {
+            return this.functions.ToArray();
         }
 
         /// <summary>
@@ -181,7 +227,7 @@ namespace RechnermodulBibliothek
         /// <param name="name">Der Name der Funktion</param>
         /// <param name="description">Die Beschreibung der Funktion</param>
         /// <param name="function">Die Funktion selbst</param>
-        protected void addFunction(string name, string description, AbstractFunction function) {
+        protected void addFunction(string name, string description, FunctionInterface function) {
             this.functions.Add(function);
 
             FunctionDescription desc = new FunctionDescription(this.functionDescs.Count, name, description);
