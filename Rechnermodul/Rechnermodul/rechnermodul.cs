@@ -77,6 +77,17 @@ namespace Rechnermodul
             
             foreach (ModulInterface modul in this.modules)
             {
+                ToolStripMenuItem item = new ToolStripMenuItem();
+                item.Text = modul.getFriendlyName();
+
+                ms_module.Items.Add(item);
+
+                foreach (FunctionDescriptionInterface fd in modul.getFunctionDescriptions()) {
+                    ToolStripMenuItem sub_item = new ToolStripMenuItem();
+                    sub_item.Text = fd.getName();
+                    item.DropDownItems.Add(sub_item);
+                }
+
                 lb_Module.Items.Add(modul.getFriendlyName());
             }       
         }

@@ -32,12 +32,13 @@
             this.lb_Functions = new System.Windows.Forms.ListBox();
             this.btn_start = new System.Windows.Forms.Button();
             this.lb_Ergebnis = new System.Windows.Forms.ListBox();
+            this.ms_module = new System.Windows.Forms.MenuStrip();
             this.SuspendLayout();
             // 
             // lb_Module
             // 
             this.lb_Module.FormattingEnabled = true;
-            this.lb_Module.Location = new System.Drawing.Point(11, 6);
+            this.lb_Module.Location = new System.Drawing.Point(118, 6);
             this.lb_Module.Name = "lb_Module";
             this.lb_Module.Size = new System.Drawing.Size(98, 134);
             this.lb_Module.TabIndex = 0;
@@ -46,14 +47,14 @@
             // lb_Functions
             // 
             this.lb_Functions.FormattingEnabled = true;
-            this.lb_Functions.Location = new System.Drawing.Point(115, 6);
+            this.lb_Functions.Location = new System.Drawing.Point(112, 146);
             this.lb_Functions.Name = "lb_Functions";
             this.lb_Functions.Size = new System.Drawing.Size(104, 134);
             this.lb_Functions.TabIndex = 1;
             // 
             // btn_start
             // 
-            this.btn_start.Location = new System.Drawing.Point(236, 104);
+            this.btn_start.Location = new System.Drawing.Point(222, 29);
             this.btn_start.Name = "btn_start";
             this.btn_start.Size = new System.Drawing.Size(103, 36);
             this.btn_start.TabIndex = 2;
@@ -69,6 +70,15 @@
             this.lb_Ergebnis.Size = new System.Drawing.Size(118, 121);
             this.lb_Ergebnis.TabIndex = 3;
             // 
+            // ms_module
+            // 
+            this.ms_module.Dock = System.Windows.Forms.DockStyle.Left;
+            this.ms_module.Location = new System.Drawing.Point(0, 0);
+            this.ms_module.Name = "ms_module";
+            this.ms_module.Size = new System.Drawing.Size(30, 281);
+            this.ms_module.TabIndex = 4;
+            this.ms_module.Text = "ms_module";
+            // 
             // rechnermodul
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -78,10 +88,13 @@
             this.Controls.Add(this.btn_start);
             this.Controls.Add(this.lb_Functions);
             this.Controls.Add(this.lb_Module);
+            this.Controls.Add(this.ms_module);
+            this.MainMenuStrip = this.ms_module;
             this.Name = "rechnermodul";
             this.Text = "Startfenster";
             this.Load += new System.EventHandler(this.rechnermodul_Load);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -91,6 +104,7 @@
         private System.Windows.Forms.ListBox lb_Functions;
         private System.Windows.Forms.Button btn_start;
         private System.Windows.Forms.ListBox lb_Ergebnis;
+        private System.Windows.Forms.MenuStrip ms_module;
     }
 }
 
