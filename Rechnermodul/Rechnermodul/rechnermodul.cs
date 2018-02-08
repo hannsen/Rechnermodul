@@ -17,6 +17,12 @@ namespace Rechnermodul
 {
     public partial class rechnermodul : Form
     {
+        private class MyMenuItem : ToolStripMenuItem
+        {
+            public int moduleId;
+            public int functionId;
+        }
+
         private static string APP_PATH = Path.GetDirectoryName(Application.ExecutablePath);
         private RechnermodulBibliothek.ModulInterface[] modules;
         private static string MODULE_CONFIG_PATH = APP_PATH + "/../../MeineModule.txt";
@@ -75,45 +81,34 @@ namespace Rechnermodul
 
             this.modules = this.loadModules(this.getModulPaths());
             
-            foreach (ModulInterface modul in this.modules)
+            for (int mId = 0; mId<this.modules.Length; mId++)
             {
+                RechnermodulBibliothek.ModulInterface modul = this.modules[mId];
                 ToolStripMenuItem item = new ToolStripMenuItem();
                 item.Text = modul.getFriendlyName();
 
                 ms_module.Items.Add(item);
 
-                foreach (FunctionDescriptionInterface fd in modul.getFunctionDescriptions()) {
-                    ToolStripMenuItem sub_item = new ToolStripMenuItem();
+                FunctionDescriptionInterface[] functions = modul.getFunctionDescriptions();
+                for (int fId = 0; fId < functions.Length; fId++ )
+                {
+                    FunctionDescriptionInterface fd = functions[fId];
+                    MyMenuItem sub_item = new MyMenuItem();
                     sub_item.Text = fd.getName();
+                    sub_item.functionId = fId;
+                    sub_item.moduleId = mId;
+                    sub_item.Click += new EventHandler(ms_function_click);
                     item.DropDownItems.Add(sub_item);
                 }
-
-                lb_Module.Items.Add(modul.getFriendlyName());
             }       
         }
-
-        private void lb_Module_SelectedIndexChanged(object sender, EventArgs e)
+        private void ms_function_click(object sender, EventArgs e)
         {
-            int index = lb_Module.SelectedIndex;
+            MyMenuItem item = sender as MyMenuItem;
 
-            if (index >= modules.Length)
-            {
-                return;
-            }
+            ModulInterface modul = this.modules[item.moduleId];
 
-            ModulInterface modul = this.modules[index];
-
-            foreach (FunctionDescriptionInterface fd in modul.getFunctionDescriptions())
-            {
-                lb_Functions.Items.Add(fd.getName());
-            }
-        }
-
-        private void btn_start_Click(object sender, EventArgs e)
-        {
-            ModulInterface modul = this.modules[lb_Module.SelectedIndex];
-
-            FunctionInterface function = modul.getFunctions()[lb_Functions.SelectedIndex];
+            FunctionInterface function = modul.getFunctions()[item.functionId];
 
             UIBuilderInterface builder = new UIBuilder();
 
@@ -124,6 +119,7 @@ namespace Rechnermodul
             uem.ShowDialog();
 
             lb_Ergebnis.Items.Add(function.calculate(uem.getData()));
+
         }
     }
 
@@ -133,12 +129,16 @@ namespace Rechnermodul
 
         void RechnermodulBibliothek.UIBuilderInterface.addStringArrayInput(string key, string description, CheckCallback validator)
         {
+            UIElement element = new UIElement(UIElement.TYPE_ARRAY, key, description, validator);
 
+            this.elements.Add(element);
         }
 
         void RechnermodulBibliothek.UIBuilderInterface.addStringInput(string key, string description, CheckCallback validator)
         {
+            UIElement element = new UIElement(UIElement.TYPE_SINGLE, key, description, validator);
 
+            this.elements.Add(element);
         }
 
         UIElement[] RechnermodulBibliothek.UIBuilderInterface.getUIElements()
