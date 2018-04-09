@@ -77,7 +77,6 @@ namespace Rechnermodul
         {
 
             Console.Write(APP_PATH + "\n");
-            Console.Write(File.Exists(MODULE_CONFIG_PATH).ToString() + "\n");
 
             this.modules = this.loadModules(this.getModulPaths());
             
