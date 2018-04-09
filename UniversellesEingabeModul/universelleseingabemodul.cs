@@ -10,6 +10,17 @@ using System.Windows.Forms;
 
 namespace UniversellesEingabeModul
 {
+    public class InputButton : Button
+    {
+        public InputButton(universelleseingabemodul uem, string text)
+        {
+            SetStyle(ControlStyles.Selectable, false);
+            this.Text = text;
+            this.Width = 30;
+            this.Click += (sender, e) => uem.input_clicked(text);
+        }
+    }
+
     public partial class universelleseingabemodul : Form
     {
         private RechnermodulBibliothek.UIElement[] elements;
@@ -41,8 +52,75 @@ namespace UniversellesEingabeModul
             InitializeComponent();
         }
 
+        private void buildInputPanel()
+        {
+            int y = 10;
+
+            InputButton btn_backspace = new InputButton(this, "<-");
+            btn_backspace.Top = y;
+            btn_backspace.Left = 160;
+            btn_backspace.Show();
+            eingabePanel.Controls.Add(btn_backspace);
+
+            for (int row = 2; row >= 0; row--)
+            {
+                for (int col = 0; col < 3; col++)
+                {
+                    string text = (3 * row + col + 1).ToString();
+                    Button btn = new InputButton(this, text);
+                    btn.Top = y;
+                    btn.Left = 10 + 50 * col; 
+                    btn.Show();
+
+                    eingabePanel.Controls.Add(btn);
+                }
+
+                y += 30;
+            }
+            Button btn_0 = new InputButton(this, "0");
+            btn_0.Top = y;
+            btn_0.Left = 60;
+            btn_0.Show();
+
+            eingabePanel.Controls.Add(btn_0);
+        }
+
+        public void input_clicked(string key)
+        {
+            foreach (Control c in panel1.Controls)
+            {
+                if (c.Focused && c is TextBox)
+                {
+                    TextBox tb = (TextBox)c;
+                    int cursorPos = tb.SelectionStart;
+
+                    if (key == "<-")
+                    {
+                        int len = tb.Text.Length;
+                        if (cursorPos == 0)
+                        {
+                            return;
+                        }
+                        if (cursorPos == len - 1) {
+                            tb.Text = tb.Text.Substring(0, cursorPos - 1);
+                            tb.SelectionStart = cursorPos - 1;
+                            return;
+                        }
+                        tb.Text = tb.Text.Substring(0, cursorPos - 1) + tb.Text.Substring(cursorPos);
+                        tb.SelectionStart = cursorPos - 1;
+                        return;
+                    }
+
+                    tb.Text = tb.Text.Insert(cursorPos, key);
+                    tb.SelectionStart = cursorPos + 1;
+                }
+            }
+        }
+
         public void buildUi(RechnermodulBibliothek.UIBuilderInterface uiBuilder)
         {
+            this.buildInputPanel();
+
             this.elements = uiBuilder.getUIElements();
 
             int y = 0;
@@ -54,22 +132,23 @@ namespace UniversellesEingabeModul
                 label.Text = element.getDescription();
                 label.Name = "l_" + element.getKey();
                 label.AutoSize = true;
-                y += 25;
                 label.Top = y;
                 label.Show();
                 panel1.Controls.Add(label);
+                y += 20;
 
                 if (element.getType() == RechnermodulBibliothek.UIElement.TYPE_SINGLE)
                 {
                     TextBox tb = new TextBox();
                     tb.Name = "tb_" + element.getKey();
-                    tb.Left = 50;
+                    tb.Left = 0;
                     tb.Top = y;
                     tb.Show();
                     panel1.Controls.Add(tb);
-                } else
-                {
                     y += 25;
+                }
+                else
+                {
                     Button btn_add = new Button();
                     btn_add.Text = "Add";
                     Button btn_rm = new Button();
@@ -106,8 +185,14 @@ namespace UniversellesEingabeModul
                 }
 
             }
+            panel1.Height = y;
 
-            panel1.Height = y + 50;
+            eingabePanel.Top = y + 50;
+            this.Size = new Size(this.Size.Width, this.Size.Height + y);
+        }
+
+        public void validate_input (RechnermodulBibliothek.CheckCallback cb, ErrorProvider ep)
+        {
         }
 
         public void add_clicked(string key, RechnermodulBibliothek.CheckCallback cb)

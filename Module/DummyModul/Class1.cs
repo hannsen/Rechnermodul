@@ -34,7 +34,11 @@ namespace DummyModul
         void RechnermodulBibliothek.FunctionInterface.buildUI(UIBuilderInterface builder)
         {
             builder.addStringInput("s1", "Summand1", this.intChecker);
-            builder.addStringArrayInput("s", "restlichen Summanden", this.intChecker);
+            builder.addStringInput("s2", "Summand2", this.intChecker);
+            builder.addStringArrayInput("s3", "restlichen Summanden", this.intChecker);
+            builder.addStringArrayInput("s4", "weitere Summanden", this.intChecker);
+            builder.addStringArrayInput("s5", "mehr Summanden", this.intChecker);
+
         }
 
         string FunctionInterface.calculate(UserDataInterface data)

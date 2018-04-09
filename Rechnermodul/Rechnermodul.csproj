@@ -45,8 +45,9 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="UniversellesEingabeModul">
-      <HintPath>..\..\UniversellesEingabeModul\obj\Debug\UniversellesEingabeModul.dll</HintPath>
+    <Reference Include="UniversellesEingabeModul, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\UniversellesEingabeModul\obj\Debug\UniversellesEingabeModul.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
