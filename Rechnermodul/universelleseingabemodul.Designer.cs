@@ -1,16 +1,16 @@
-﻿namespace UniversellesEingabeModul
+﻿namespace Rechnermodul
 {
     partial class universelleseingabemodul
     {
         /// <summary>
-        /// Erforderliche Designervariable.
+        /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
         /// <summary>
-        /// Verwendete Ressourcen bereinigen.
+        /// Clean up any resources being used.
         /// </summary>
-        /// <param name="disposing">True, wenn verwaltete Ressourcen gelöscht werden sollen; andernfalls False.</param>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -20,50 +20,48 @@
             base.Dispose(disposing);
         }
 
-        #region Vom Windows Form-Designer generierter Code
+        #region Windows Form Designer generated code
 
         /// <summary>
-        /// Erforderliche Methode für die Designerunterstützung.
-        /// Der Inhalt der Methode darf nicht mit dem Code-Editor geändert werden.
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
         {
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.funktionsPanel = new System.Windows.Forms.Panel();
             this.eingabePanel = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
-            // panel1
+            // funktionsPanel
             // 
-            this.panel1.Location = new System.Drawing.Point(12, 12);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(259, 29);
-            this.panel1.TabIndex = 0;
+            this.funktionsPanel.Location = new System.Drawing.Point(15, 13);
+            this.funktionsPanel.Name = "funktionsPanel";
+            this.funktionsPanel.Size = new System.Drawing.Size(257, 8);
+            this.funktionsPanel.TabIndex = 0;
             // 
             // eingabePanel
             // 
-            this.eingabePanel.Location = new System.Drawing.Point(9, 47);
+            this.eingabePanel.Location = new System.Drawing.Point(15, 34);
             this.eingabePanel.Name = "eingabePanel";
-            this.eingabePanel.Size = new System.Drawing.Size(261, 212);
+            this.eingabePanel.Size = new System.Drawing.Size(257, 217);
             this.eingabePanel.TabIndex = 1;
             // 
             // universelleseingabemodul
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(274, 341);
+            this.ClientSize = new System.Drawing.Size(284, 262);
             this.Controls.Add(this.eingabePanel);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.funktionsPanel);
             this.Name = "universelleseingabemodul";
             this.Text = "UniversellesEingabeModul";
-            this.Load += new System.EventHandler(this.universelleseingabemodul_Load);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel funktionsPanel;
         private System.Windows.Forms.Panel eingabePanel;
     }
 }
-

@@ -113,7 +113,7 @@ namespace Rechnermodul
 
             function.buildUI(builder);
 
-            var uem = new UniversellesEingabeModul.universelleseingabemodul();
+            var uem = new universelleseingabemodul();
             uem.buildUi(builder);
             uem.ShowDialog();
 
