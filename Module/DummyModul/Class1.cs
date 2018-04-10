@@ -21,14 +21,31 @@ namespace DummyModul
 
     public class f1 : FunctionInterface
     {
+        private string intChecker(string s)
+        {
+            int x;
+            if (int.TryParse(s, out x))
+            {
+                return null;
+            }
+            return "Fehler, ist halt keine Zahl";
+        }
+
         void RechnermodulBibliothek.FunctionInterface.buildUI(UIBuilderInterface builder)
         {
+            builder.addStringInput("s1", "Summand1", this.intChecker);
+            builder.addStringInput("s2", "Summand2", this.intChecker);
+            builder.addStringArrayInput("s3", "restlichen Summanden", this.intChecker);
+            builder.addStringArrayInput("s4", "weitere Summanden", this.intChecker);
+            builder.addStringArrayInput("s5", "mehr Summanden", this.intChecker);
 
         }
 
         string FunctionInterface.calculate(UserDataInterface data)
         {
-            return "test";
+            int res = 0;
+            
+            return res + data.getStringValue("s1");
         }
     }
 }

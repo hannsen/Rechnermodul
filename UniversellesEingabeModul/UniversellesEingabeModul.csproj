@@ -1,16 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{FD1203A7-4305-4B99-80FE-A4E3135E892E}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <ProjectGuid>{C7AFCD96-D743-4CC7-A958-72CA4B6B5B21}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Rechnermodul</RootNamespace>
-    <AssemblyName>Rechnermodul</AssemblyName>
+    <RootNamespace>UniversellesEingabeModul</RootNamespace>
+    <AssemblyName>UniversellesEingabeModul</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -31,9 +33,12 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="RechnermodulBibliothek">
-      <HintPath>..\..\RechnermodulBibliothek\obj\Debug\RechnermodulBibliothek.dll</HintPath>
+      <HintPath>..\RechnermodulBibliothek\obj\Debug\RechnermodulBibliothek.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -43,15 +48,16 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="rechnermodul.cs">
+    <Compile Include="universelleseingabemodul.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="rechnermodul.Designer.cs">
-      <DependentUpon>rechnermodul.cs</DependentUpon>
+    <Compile Include="universelleseingabemodul.Designer.cs">
+      <DependentUpon>universelleseingabemodul.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -63,9 +69,10 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="rechnermodul.resx">
-      <DependentUpon>rechnermodul.cs</DependentUpon>
+    <EmbeddedResource Include="universelleseingabemodul.resx">
+      <DependentUpon>universelleseingabemodul.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
