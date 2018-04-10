@@ -30,7 +30,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="RechnermodulBibliothek">
+    <Reference Include="RechnermodulBibliothek, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\RechnermodulBibliothek\obj\Debug\RechnermodulBibliothek.dll</HintPath>
     </Reference>
     <Reference Include="System" />
