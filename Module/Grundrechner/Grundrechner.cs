@@ -2,18 +2,29 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace test {
-    class Grundrechner {
-        static void Main(string[] args) {
-            String input = "2 * (-2.000 + ,1) * (4 - 1)  / 4";
-            Console.WriteLine(CalculateInput(input));
+using RechnermodulBibliothek;
 
-            // Keep the console window open in debug mode.
-            Console.WriteLine("Press any key to exit.");
-            Console.ReadKey();
+namespace Grundrechner {
+    public class Grundrechner : RechnermodulBibliothek.AbstractModule {
+        public Grundrechner() {
+            this.setName("Grundrechner");
+            this.setDescription("Ein Modul zur Evaluierung von Grundrecheneingaben");
+            this.addFunction("Berechnen", "", new f1());
+        }
+    }
+
+    public class f1 : FunctionInterface {
+
+        void RechnermodulBibliothek.FunctionInterface.buildUI(UIBuilderInterface builder) {
+            builder.addStringInput("infix", "Infix", this.validate);
         }
 
-        static double CalculateInput(string input) {
+        private string validate() {
+            return null;
+        }
+
+        string FunctionInterface.calculate(UserDataInterface data) {
+            string input = data.getStringValue("infix");
             // Input sanitize
             string tausendTrenner = ".";
             string kommaZeichen = ",";
@@ -28,14 +39,14 @@ namespace test {
             return CalculatePostfix(postfix);
         }
 
-        static double CalculatePostfix(List<string> postfix) {
+        static string CalculatePostfix(List<string> postfix) {
             string[] ops = { "+", "-", "*", "/" };
             int i = 0;
             while (true) {
                 if (ops.Contains(postfix[i])) {
                     string result = Calc(postfix[i - 2], postfix[i - 1], postfix[i]);
                     if (postfix.Count == 3)
-                        return Convert.ToDouble(result);
+                        return result;
                     postfix[i] = result;
                     postfix.RemoveAt(i - 2);
                     postfix.RemoveAt(i - 2);
@@ -54,14 +65,14 @@ namespace test {
                 if (Double.TryParse(c, out double temp_out)) {
                     postFix.Add(c);
                 }
-                else if (c == "(") { 
+                else if (c == "(") {
                     opstack.Push(c);
-                    }
+                }
                 else if (c == ")") {
                     arrival = opstack.Pop();
                     while (arrival != "(") {
                         postFix.Add(arrival);
-                        arrival = opstack.Pop(); 
+                        arrival = opstack.Pop();
                     }
                 }
                 else {
