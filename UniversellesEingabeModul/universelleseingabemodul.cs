@@ -12,11 +12,11 @@ namespace UniversellesEingabeModul
 {
     public class InputButton : Button
     {
-        public InputButton(universelleseingabemodul uem, string text)
+        public InputButton(universelleseingabemodul uem, string text, int width=30)
         {
             SetStyle(ControlStyles.Selectable, false);
             this.Text = text;
-            this.Width = 30;
+            this.Width = width;
             this.Click += (sender, e) => uem.input_clicked(text);
         }
     }
@@ -38,11 +38,19 @@ namespace UniversellesEingabeModul
 
             string RechnermodulBibliothek.UserDataInterface.getStringValue(string key)
             {
+                if (!this.values.ContainsKey(key))
+                {
+                    throw new Exception("Der Schlüssel ist halt nicht verfügbar");
+                }
                 return this.values[key];
             }
 
             string[] RechnermodulBibliothek.UserDataInterface.getStringArray(string key)
             {
+                if (!this.arrays.ContainsKey(key))
+                {
+                    throw new Exception("Der Schlüssel ist halt nicht verfügbar");
+                }
                 return this.arrays[key];
             }
         }
@@ -81,8 +89,14 @@ namespace UniversellesEingabeModul
             btn_0.Top = y;
             btn_0.Left = 60;
             btn_0.Show();
-
             eingabePanel.Controls.Add(btn_0);
+            Button btn_berechnen = new InputButton(this, "Berechnen", 100);
+            btn_berechnen.Top = y;
+            btn_berechnen.Left = 110;
+            btn_berechnen.Show();
+            eingabePanel.Controls.Add(btn_berechnen);
+
+            eingabePanel.Height = y + 80;
         }
 
         public void input_clicked(string key)
@@ -188,7 +202,7 @@ namespace UniversellesEingabeModul
             panel1.Height = y;
 
             eingabePanel.Top = y + 50;
-            this.Size = new Size(this.Size.Width, this.Size.Height + y);
+            this.Size = new Size(this.Size.Width, eingabePanel.Height + panel1.Height + 50);
         }
 
         public void validate_input (RechnermodulBibliothek.CheckCallback cb, ErrorProvider ep)
