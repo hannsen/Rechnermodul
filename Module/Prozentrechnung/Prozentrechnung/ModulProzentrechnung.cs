@@ -7,7 +7,7 @@ using RechnermodulBibliothek;
 
 namespace Prozentrechnung
 {
-    public class ModulProzentrechnung : AbstractModule
+    public class ModulProzentrechnung : RechnermodulBibliothek.AbstractModule
     {
 
         public ModulProzentrechnung()
@@ -19,21 +19,21 @@ namespace Prozentrechnung
             this.addFunction("%dazu", "", new ProzentDazuFnc());
             this.addFunction("%weg", "", new ProzentWegFnc());
             this.addFunction("%davon", "", new ProzentDavonFnc());
-            this.addFunction("%Satz", "", new ProzentSatzFnc());
+            //this.addFunction("%Satz", "", new ProzentSatzFnc());
             this.addFunction("Netto aus Brutto", "", new NettoAusBruttoFnc());
-            this.addFunction("Brutto aus Netto", "", new BruttoAusNettoFnc());
+            //this.addFunction("Brutto aus Netto", "", new BruttoAusNettoFnc());
 
         }
 
     }
 
-    private class ProzentDazuFnc : FunctionInterface
+    public class ProzentDazuFnc : FunctionInterface
     {
 
         void RechnermodulBibliothek.FunctionInterface.buildUI(UIBuilderInterface builder)
         {
-
-            RechnermodulBibliothek.CheckCallback checkDoubleInputDelegate = new RechnermodulBibliothek.CheckCallback(CheckCallbackLib.Instance.checkDoubleInput);
+            
+            RechnermodulBibliothek.CheckCallback checkDoubleInputDelegate = new RechnermodulBibliothek.CheckCallback((new CheckCallbackLib()).checkDoubleInput);
 
             builder.addStringInput("baseVal", "Grundwert für die Rechnung", checkDoubleInputDelegate);
             builder.addStringInput("percentVal", "Prozentwert für die Rechnung", checkDoubleInputDelegate);
@@ -59,13 +59,13 @@ namespace Prozentrechnung
 
     }
 
-    private class ProzentWegFnc : FunctionInterface
+    public class ProzentWegFnc : FunctionInterface
     {
 
         void RechnermodulBibliothek.FunctionInterface.buildUI(UIBuilderInterface builder)
         {
 
-            RechnermodulBibliothek.CheckCallback checkDoubleInputDelegate = new RechnermodulBibliothek.CheckCallback(CheckCallbackLib.Instance.checkDoubleInput);
+            RechnermodulBibliothek.CheckCallback checkDoubleInputDelegate = new RechnermodulBibliothek.CheckCallback((new CheckCallbackLib()).checkDoubleInput);
 
             builder.addStringInput("baseVal", "Grundwert für die Rechnung", checkDoubleInputDelegate);
             builder.addStringInput("percentVal", "Prozentwert für die Rechnung", checkDoubleInputDelegate);
@@ -92,13 +92,13 @@ namespace Prozentrechnung
 
     }
 
-    private class ProzentDavonFnc : FunctionInterface
+    public class ProzentDavonFnc : FunctionInterface
     {
 
         void RechnermodulBibliothek.FunctionInterface.buildUI(UIBuilderInterface builder)
         {
 
-            RechnermodulBibliothek.CheckCallback checkDoubleInputDelegate = new RechnermodulBibliothek.CheckCallback(CheckCallbackLib.Instance.checkDoubleInput);
+            RechnermodulBibliothek.CheckCallback checkDoubleInputDelegate = new RechnermodulBibliothek.CheckCallback((new CheckCallbackLib()).checkDoubleInput);
 
             builder.addStringInput("baseVal", "Grundwert für die Rechnung", checkDoubleInputDelegate);
             builder.addStringInput("percentVal", "Prozentwert für die Rechnung", checkDoubleInputDelegate);
@@ -125,18 +125,18 @@ namespace Prozentrechnung
 
     }
 
-    private class ProzentSatzFnc : FunctionInterface
-    {
+    //public class ProzentSatzFnc : FunctionInterface
+    //{
 
-    }
+    //}
 
-    private class NettoAusBruttoFnc : FunctionInterface
+    public class NettoAusBruttoFnc : FunctionInterface
     {
 
         void RechnermodulBibliothek.FunctionInterface.buildUI(UIBuilderInterface builder)
         {
 
-            RechnermodulBibliothek.CheckCallback checkDoubleInputDelegate = new RechnermodulBibliothek.CheckCallback(CheckCallbackLib.Instance.checkDoubleInput);
+            RechnermodulBibliothek.CheckCallback checkDoubleInputDelegate = new RechnermodulBibliothek.CheckCallback((new CheckCallbackLib()).checkDoubleInput);
 
             builder.addStringInput("baseVal", "Bruttowert für die Rechnung", checkDoubleInputDelegate);
 
@@ -156,36 +156,36 @@ namespace Prozentrechnung
 
             double res = grundWert * factor;
 
-            return "";
+            return res.ToString();
 
         }
 
     }
 
-    private class BruttoAusNettoFnc : FunctionInterface
-    {
+    //public class BruttoAusNettoFnc : FunctionInterface
+    //{
         
-    }
+    //}
 
     public class CheckCallbackLib
     {
 
-        private static volatile CheckCallbackLib INSTANCE;
+        //private static volatile CheckCallbackLib INSTANCE;
 
-        private CheckCallbackLib() { }
+        //private CheckCallbackLib() { }
 
-        public static CheckCallbackLib Instance
-        {
+        //public static CheckCallbackLib Instance
+        //{
 
-            get
-            {
-                if (INSTANCE == null)
-                    INSTANCE = new CheckCallbackLib();
+        //    get
+        //    {
+        //        if (INSTANCE == null)
+        //            INSTANCE = new CheckCallbackLib();
 
-                return INSTANCE;
-            }           
+        //        return INSTANCE;
+        //    }           
 
-        }
+        //}
 
         public string checkDoubleInput(string input)
         {

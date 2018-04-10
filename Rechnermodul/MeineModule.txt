@@ -1,1 +1,2 @@
 ﻿../../../Module/DummyModul/obj/Debug/DummyModul.dll
+../../../Module/Prozentrechnung/Prozentrechnung/obj/Debug/Prozentrechnung.dll
