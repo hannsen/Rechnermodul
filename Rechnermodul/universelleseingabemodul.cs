@@ -10,27 +10,14 @@ using System.Windows.Forms;
 
 namespace Rechnermodul
 {
-    public class InputButton : Button
-    {
-        public InputButton(universelleseingabemodul uem, string text, int width = 30)
-        {
-            SetStyle(ControlStyles.Selectable, false);
-            this.Text = text;
-            this.Width = width;
-            this.Click += (sender, e) => uem.input_clicked(text);
-        }
-
-        private void InitializeComponent()
-        {
-            this.SuspendLayout();
-            this.ResumeLayout(false);
-
-        }
-    }
-
     public partial class universelleseingabemodul : Form
     {
         private RechnermodulBibliothek.UIElement[] elements;
+
+        public universelleseingabemodul()
+        {
+            InitializeComponent();
+        }
 
         private class UserData : RechnermodulBibliothek.UserDataInterface
         {
@@ -62,51 +49,7 @@ namespace Rechnermodul
             }
         }
 
-        public universelleseingabemodul()
-        {
-            InitializeComponent();
-        }
-
-        private void buildInputPanel()
-        {
-            int y = 10;
-
-            InputButton btn_backspace = new InputButton(this, "<-");
-            btn_backspace.Top = y;
-            btn_backspace.Left = 160;
-            btn_backspace.Show();
-            eingabePanel.Controls.Add(btn_backspace);
-
-            for (int row = 2; row >= 0; row--)
-            {
-                for (int col = 0; col < 3; col++)
-                {
-                    string text = (3 * row + col + 1).ToString();
-                    Button btn = new InputButton(this, text);
-                    btn.Top = y;
-                    btn.Left = 10 + 50 * col;
-                    btn.Show();
-
-                    eingabePanel.Controls.Add(btn);
-                }
-
-                y += 30;
-            }
-            Button btn_0 = new InputButton(this, "0");
-            btn_0.Top = y;
-            btn_0.Left = 60;
-            btn_0.Show();
-            eingabePanel.Controls.Add(btn_0);
-            Button btn_berechnen = new InputButton(this, "Berechnen", 100);
-            btn_berechnen.Top = y;
-            btn_berechnen.Left = 110;
-            btn_berechnen.Show();
-            eingabePanel.Controls.Add(btn_berechnen);
-
-            eingabePanel.Height = y + 80;
-        }
-
-        public void input_clicked(string key)
+        private void add_string_in_current_control(string s)
         {
             foreach (Control c in funktionsPanel.Controls)
             {
@@ -115,34 +58,40 @@ namespace Rechnermodul
                     TextBox tb = (TextBox)c;
                     int cursorPos = tb.SelectionStart;
 
-                    if (key == "<-")
+                    tb.Text = tb.Text.Insert(cursorPos, s);
+                    tb.SelectionStart = cursorPos + 1;
+                }
+            }
+        }
+
+        private void backspace_in_current_control()
+        {
+            foreach (Control c in funktionsPanel.Controls)
+            {
+                if (c.Focused && c is TextBox)
+                {
+                    TextBox tb = (TextBox)c;
+                    int cursorPos = tb.SelectionStart;
+
+                    int len = tb.Text.Length;
+                    if (cursorPos == 0)
                     {
-                        int len = tb.Text.Length;
-                        if (cursorPos == 0)
-                        {
-                            return;
-                        }
-                        if (cursorPos == len - 1)
-                        {
-                            tb.Text = tb.Text.Substring(0, cursorPos - 1);
-                            tb.SelectionStart = cursorPos - 1;
-                            return;
-                        }
-                        tb.Text = tb.Text.Substring(0, cursorPos - 1) + tb.Text.Substring(cursorPos);
+                        return;
+                    }
+                    if (cursorPos == len - 1)
+                    {
+                        tb.Text = tb.Text.Substring(0, cursorPos - 1);
                         tb.SelectionStart = cursorPos - 1;
                         return;
                     }
-
-                    tb.Text = tb.Text.Insert(cursorPos, key);
-                    tb.SelectionStart = cursorPos + 1;
+                    tb.Text = tb.Text.Substring(0, cursorPos - 1) + tb.Text.Substring(cursorPos);
+                    tb.SelectionStart = cursorPos - 1;
                 }
             }
         }
 
         public void buildUi(RechnermodulBibliothek.UIBuilderInterface uiBuilder)
         {
-            this.buildInputPanel();
-
             this.elements = uiBuilder.getUIElements();
 
             int y = 0;
@@ -298,6 +247,89 @@ namespace Rechnermodul
         private void universelleseingabemodul_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void numericInputButton1_Click(object sender, EventArgs e)
+        {
+            this.add_string_in_current_control("1");
+        }
+
+        private void numericInputButton2_Click(object sender, EventArgs e)
+        {
+            this.add_string_in_current_control("2");
+        }
+
+        private void numericInputButton3_Click(object sender, EventArgs e)
+        {
+            this.add_string_in_current_control("3");
+        }
+
+        private void numericInputButton4_Click(object sender, EventArgs e)
+        {
+            this.add_string_in_current_control("4");
+        }
+
+        private void numericInputButton5_Click(object sender, EventArgs e)
+        {
+            this.add_string_in_current_control("5");
+        }
+
+        private void numericInputButton6_Click(object sender, EventArgs e)
+        {
+            this.add_string_in_current_control("6");
+        }
+
+        private void numericInputButton7_Click(object sender, EventArgs e)
+        {
+            this.add_string_in_current_control("7");
+        }
+
+        private void numericInputButton8_Click(object sender, EventArgs e)
+        {
+            this.add_string_in_current_control("8");
+        }
+
+        private void numericInputButton9_Click(object sender, EventArgs e)
+        {
+            this.add_string_in_current_control("9");
+        }
+
+        private void numericInputButton10_Click(object sender, EventArgs e)
+        {
+            this.add_string_in_current_control("0");
+        }
+
+        private void numericInputButtonBackspace_Click(object sender, EventArgs e)
+        {
+            this.backspace_in_current_control();
+        }
+
+        private void numericInputButtonplus_Click(object sender, EventArgs e)
+        {
+            this.add_string_in_current_control("+");
+        }
+
+        private void numericInputButtonminus_Click(object sender, EventArgs e)
+        {
+            this.add_string_in_current_control("-");
+        }
+
+        private void numericInputButtonmultiplication_Click(object sender, EventArgs e)
+        {
+            this.add_string_in_current_control("*");
+        }
+
+        private void numericInputButtondivision_Click(object sender, EventArgs e)
+        {
+            this.add_string_in_current_control("/");
+        }
+    }
+
+    public class NumericInputButton : Button
+    {
+        public NumericInputButton()
+        {
+            SetStyle(ControlStyles.Selectable, false);
         }
     }
 }
