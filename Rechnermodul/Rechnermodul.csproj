@@ -45,12 +45,14 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="UniversellesEingabeModul, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\UniversellesEingabeModul\obj\Debug\UniversellesEingabeModul.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="universelleseingabemodul.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="universelleseingabemodul.Designer.cs">
+      <DependentUpon>universelleseingabemodul.cs</DependentUpon>
+    </Compile>
     <Compile Include="rechnermodul.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -70,6 +72,9 @@
     </Compile>
     <EmbeddedResource Include="rechnermodul.resx">
       <DependentUpon>rechnermodul.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="universelleseingabemodul.resx">
+      <DependentUpon>universelleseingabemodul.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

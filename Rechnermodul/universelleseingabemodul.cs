@@ -8,16 +8,23 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace UniversellesEingabeModul
+namespace Rechnermodul
 {
     public class InputButton : Button
     {
-        public InputButton(universelleseingabemodul uem, string text, int width=30)
+        public InputButton(universelleseingabemodul uem, string text, int width = 30)
         {
             SetStyle(ControlStyles.Selectable, false);
             this.Text = text;
             this.Width = width;
             this.Click += (sender, e) => uem.input_clicked(text);
+        }
+
+        private void InitializeComponent()
+        {
+            this.SuspendLayout();
+            this.ResumeLayout(false);
+
         }
     }
 
@@ -77,7 +84,7 @@ namespace UniversellesEingabeModul
                     string text = (3 * row + col + 1).ToString();
                     Button btn = new InputButton(this, text);
                     btn.Top = y;
-                    btn.Left = 10 + 50 * col; 
+                    btn.Left = 10 + 50 * col;
                     btn.Show();
 
                     eingabePanel.Controls.Add(btn);
@@ -101,7 +108,7 @@ namespace UniversellesEingabeModul
 
         public void input_clicked(string key)
         {
-            foreach (Control c in panel1.Controls)
+            foreach (Control c in funktionsPanel.Controls)
             {
                 if (c.Focused && c is TextBox)
                 {
@@ -115,7 +122,8 @@ namespace UniversellesEingabeModul
                         {
                             return;
                         }
-                        if (cursorPos == len - 1) {
+                        if (cursorPos == len - 1)
+                        {
                             tb.Text = tb.Text.Substring(0, cursorPos - 1);
                             tb.SelectionStart = cursorPos - 1;
                             return;
@@ -139,7 +147,7 @@ namespace UniversellesEingabeModul
 
             int y = 0;
 
-            for (int i = 0; i < this.elements.Length;i++ )
+            for (int i = 0; i < this.elements.Length; i++)
             {
                 RechnermodulBibliothek.UIElement element = this.elements[i];
                 Label label = new Label();
@@ -148,7 +156,7 @@ namespace UniversellesEingabeModul
                 label.AutoSize = true;
                 label.Top = y;
                 label.Show();
-                panel1.Controls.Add(label);
+                funktionsPanel.Controls.Add(label);
                 y += 20;
 
                 if (element.getType() == RechnermodulBibliothek.UIElement.TYPE_SINGLE)
@@ -158,7 +166,7 @@ namespace UniversellesEingabeModul
                     tb.Left = 0;
                     tb.Top = y;
                     tb.Show();
-                    panel1.Controls.Add(tb);
+                    funktionsPanel.Controls.Add(tb);
                     y += 25;
                 }
                 else
@@ -192,20 +200,20 @@ namespace UniversellesEingabeModul
                     lb.Height = 100;
                     y += 100;
 
-                    panel1.Controls.Add(btn_add);
-                    panel1.Controls.Add(btn_rm);
-                    panel1.Controls.Add(tb_new);
-                    panel1.Controls.Add(lb);
+                    funktionsPanel.Controls.Add(btn_add);
+                    funktionsPanel.Controls.Add(btn_rm);
+                    funktionsPanel.Controls.Add(tb_new);
+                    funktionsPanel.Controls.Add(lb);
                 }
 
             }
-            panel1.Height = y;
+            funktionsPanel.Height = y;
 
             eingabePanel.Top = y + 50;
-            this.Size = new Size(this.Size.Width, eingabePanel.Height + panel1.Height + 50);
+            this.Size = new Size(this.Size.Width, eingabePanel.Height + funktionsPanel.Height + 50);
         }
 
-        public void validate_input (RechnermodulBibliothek.CheckCallback cb, ErrorProvider ep)
+        public void validate_input(RechnermodulBibliothek.CheckCallback cb, ErrorProvider ep)
         {
         }
 
@@ -217,12 +225,13 @@ namespace UniversellesEingabeModul
             string tb_key = "tb_" + key;
             string lb_key = "lb_" + key;
 
-            foreach (Control c in panel1.Controls)
+            foreach (Control c in funktionsPanel.Controls)
             {
                 if (c.Name.Equals(tb_key))
                 {
-                    tb = (TextBox) c;
-                } else if (c.Name.Equals(lb_key))
+                    tb = (TextBox)c;
+                }
+                else if (c.Name.Equals(lb_key))
                 {
                     lb = (ListBox)c;
                 }
@@ -245,7 +254,7 @@ namespace UniversellesEingabeModul
         {
             string lb_key = "lb_" + key;
 
-            foreach (Control c in panel1.Controls)
+            foreach (Control c in funktionsPanel.Controls)
             {
                 if (c.Name.Equals(lb_key))
                 {
@@ -263,19 +272,20 @@ namespace UniversellesEingabeModul
             Dictionary<string, string> values = new Dictionary<string, string>();
             Dictionary<string, string[]> arrays = new Dictionary<string, string[]>();
 
-            foreach (Control c in panel1.Controls)
+            foreach (Control c in funktionsPanel.Controls)
             {
                 if (c.Name.StartsWith("tb_"))
                 {
-                    TextBox tb = (TextBox) c;
+                    TextBox tb = (TextBox)c;
                     values.Add(tb.Name.Replace("tb_", ""), tb.Text);
-                } else if (c.Name.StartsWith("lb_"))
+                }
+                else if (c.Name.StartsWith("lb_"))
                 {
                     ListBox lb = (ListBox)c;
                     string[] v = new string[lb.Items.Count];
-                    for (int i=0;i<lb.Items.Count; i++)
+                    for (int i = 0; i < lb.Items.Count; i++)
                     {
-                        v[i] = (string) lb.Items[i];
+                        v[i] = (string)lb.Items[i];
                     }
                     arrays.Add(lb.Name.Replace("lb_", ""), v);
                 }
