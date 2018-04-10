@@ -19,12 +19,13 @@ namespace Grundrechner {
             builder.addStringInput("infix", "Infix", this.validate);
         }
 
-        private string validate() {
+        private string validate(string s) {
             return null;
         }
 
         string FunctionInterface.calculate(UserDataInterface data) {
-            string input = data.getStringValue("infix");
+            string input, user_input;
+            input = user_input = data.getStringValue("infix");
             // Input sanitize
             string tausendTrenner = ".";
             string kommaZeichen = ",";
@@ -36,7 +37,7 @@ namespace Grundrechner {
             // Actual calculation
             List<string> infixValues = InfixToArray(input);
             List<string> postfix = InfixToPostfix(infixValues);
-            return CalculatePostfix(postfix);
+            return user_input + " = " +  CalculatePostfix(postfix);
         }
 
         static string CalculatePostfix(List<string> postfix) {
@@ -62,7 +63,8 @@ namespace Grundrechner {
             string arrival;
             Stack<string> opstack = new Stack<string>();
             foreach (string c in infix) {
-                if (Double.TryParse(c, out double temp_out)) {
+                double temp_out;
+                if (Double.TryParse(c, out temp_out)) {
                     postFix.Add(c);
                 }
                 else if (c == "(") {
