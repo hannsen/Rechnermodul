@@ -45,11 +45,8 @@ namespace Prozentrechnung
             double grundWert;
             double prozentWert;
 
-            if(!(Double.TryParse(data.getStringValue("baseVal"), out grundWert) &&
-                Double.TryParse(data.getStringValue("precentVal"), out prozentWert))) {
-
-                    return "Eingaben nicht gültig!";
-            }
+            grundWert = Convert.ToDouble(data.getStringValue("baseVal"));
+            prozentWert = Convert.ToDouble(data.getStringValue("percentVal"));
 
             double addVal = grundWert * (prozentWert / 100);
 
@@ -77,12 +74,8 @@ namespace Prozentrechnung
             double grundWert;
             double prozentWert;
 
-            if (!(Double.TryParse(data.getStringValue("baseVal"), out grundWert) &&
-                Double.TryParse(data.getStringValue("precentVal"), out prozentWert)))
-            {
-
-                return "Eingaben nicht gültig!";
-            }
+            grundWert = Convert.ToDouble(data.getStringValue("baseVal"));
+            prozentWert = Convert.ToDouble(data.getStringValue("percentVal"));
 
             double subVal = grundWert * (prozentWert / 100);
 
@@ -110,12 +103,8 @@ namespace Prozentrechnung
             double grundWert;
             double prozentWert;
 
-            if (!(Double.TryParse(data.getStringValue("baseVal"), out grundWert) &&
-                Double.TryParse(data.getStringValue("precentVal"), out prozentWert)))
-            {
-
-                return "Eingaben nicht gültig!";
-            }
+            grundWert = Convert.ToDouble(data.getStringValue("baseVal"));
+            prozentWert = Convert.ToDouble(data.getStringValue("percentVal"));
 
             double res = grundWert * (prozentWert / 100);
 
@@ -125,10 +114,38 @@ namespace Prozentrechnung
 
     }
 
-    //public class ProzentSatzFnc : FunctionInterface
-    //{
+    public class ProzentSatzFnc : FunctionInterface
+    {
 
-    //}
+        void RechnermodulBibliothek.FunctionInterface.buildUI(UIBuilderInterface builder)
+        {
+
+            RechnermodulBibliothek.CheckCallback checkDoubleInputDelegate = new RechnermodulBibliothek.CheckCallback((new CheckCallbackLib()).checkDoubleInput);
+
+            builder.addStringInput("baseVal", "Grundwert für die Rechnung", checkDoubleInputDelegate);
+            builder.addStringInput("percentVal", "Prozentwert für die Rechnung", checkDoubleInputDelegate);
+
+        }
+
+        string FunctionInterface.calculate(UserDataInterface data)
+        {
+            double grundWert;
+            double prozentWert;
+
+            String resStr = "(100 / @GW@) * @PW@";
+
+            grundWert = Convert.ToDouble(data.getStringValue("baseVal"));
+            prozentWert = Convert.ToDouble(data.getStringValue("percentVal"));
+
+            double res = (100 / grundWert) * prozentWert;
+
+            resStr = resStr.Replace("@GW@", grundWert.ToString()).Replace("@PW@", prozentWert.ToString()) + " = " + String.Format("{0:f}", res) + " %";
+
+            return resStr;
+
+        }
+
+    }
 
     public class NettoAusBruttoFnc : FunctionInterface
     {
@@ -146,26 +163,54 @@ namespace Prozentrechnung
         {
             double grundWert;
 
-            if (!Double.TryParse(data.getStringValue("baseVal"), out grundWert))
-            {
-                return "Eingaben nicht gültig!";
-            }
+            String resStr = "@BRUTTO@ / (1 + @MWST@)";
+
+            grundWert = Convert.ToDouble(data.getStringValue("baseVal"));
 
             double mwst = 0.19;
-            double factor = 1 / (1 + mwst);
 
-            double res = grundWert * factor;
+            double res = grundWert / (1 + mwst);
 
-            return res.ToString();
 
+            resStr = resStr.Replace("@BRUTTO@", grundWert.ToString()).Replace("@MWST@", mwst.ToString()) + " = " + String.Format("{0:f}", res);
+
+            return resStr;
         }
 
     }
 
-    //public class BruttoAusNettoFnc : FunctionInterface
-    //{
-        
-    //}
+    public class BruttoAusNettoFnc : FunctionInterface
+    {
+
+        void RechnermodulBibliothek.FunctionInterface.buildUI(UIBuilderInterface builder)
+        {
+
+            RechnermodulBibliothek.CheckCallback checkDoubleInputDelegate = new RechnermodulBibliothek.CheckCallback((new CheckCallbackLib()).checkDoubleInput);
+
+            builder.addStringInput("baseVal", "Nettowert für die Rechnung", checkDoubleInputDelegate);
+
+        }
+
+        string FunctionInterface.calculate(UserDataInterface data)
+        {
+
+            double grundWert;
+
+            String resStr = "(@NETTO@ * @MWST@) + @NETTO@";
+
+            grundWert = Convert.ToDouble(data.getStringValue("baseVal"));
+
+            double mwst = 0.19;
+
+            double res = (grundWert * mwst) + grundWert;
+
+            resStr = resStr.Replace("@NETTO@", grundWert.ToString()).Replace("@MWST@", mwst.ToString()) + " = " + String.Format("{0:f}", res);
+
+            return resStr;
+
+        }
+
+    }
 
     public class CheckCallbackLib
     {
