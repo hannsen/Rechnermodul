@@ -28,8 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.funktionsPanel = new System.Windows.Forms.Panel();
             this.eingabePanel = new System.Windows.Forms.Panel();
+            this.numericInputButtondivision = new Rechnermodul.NumericInputButton();
+            this.numericInputButtonmultiplication = new Rechnermodul.NumericInputButton();
+            this.numericInputButtonminus = new Rechnermodul.NumericInputButton();
+            this.numericInputButtonplus = new Rechnermodul.NumericInputButton();
             this.numericInputButton11 = new Rechnermodul.NumericInputButton();
             this.numericInputButton10 = new Rechnermodul.NumericInputButton();
             this.numericInputButton9 = new Rechnermodul.NumericInputButton();
@@ -41,11 +46,9 @@
             this.numericInputButton3 = new Rechnermodul.NumericInputButton();
             this.numericInputButton2 = new Rechnermodul.NumericInputButton();
             this.numericInputButton1 = new Rechnermodul.NumericInputButton();
-            this.numericInputButtonplus = new Rechnermodul.NumericInputButton();
-            this.numericInputButtonminus = new Rechnermodul.NumericInputButton();
-            this.numericInputButtonmultiplication = new Rechnermodul.NumericInputButton();
-            this.numericInputButtondivision = new Rechnermodul.NumericInputButton();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.eingabePanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // funktionsPanel
@@ -76,6 +79,46 @@
             this.eingabePanel.Name = "eingabePanel";
             this.eingabePanel.Size = new System.Drawing.Size(276, 224);
             this.eingabePanel.TabIndex = 1;
+            // 
+            // numericInputButtondivision
+            // 
+            this.numericInputButtondivision.Location = new System.Drawing.Point(204, 119);
+            this.numericInputButtondivision.Name = "numericInputButtondivision";
+            this.numericInputButtondivision.Size = new System.Drawing.Size(61, 33);
+            this.numericInputButtondivision.TabIndex = 14;
+            this.numericInputButtondivision.Text = "/";
+            this.numericInputButtondivision.UseVisualStyleBackColor = true;
+            this.numericInputButtondivision.Click += new System.EventHandler(this.numericInputButtondivision_Click);
+            // 
+            // numericInputButtonmultiplication
+            // 
+            this.numericInputButtonmultiplication.Location = new System.Drawing.Point(137, 120);
+            this.numericInputButtonmultiplication.Name = "numericInputButtonmultiplication";
+            this.numericInputButtonmultiplication.Size = new System.Drawing.Size(61, 32);
+            this.numericInputButtonmultiplication.TabIndex = 13;
+            this.numericInputButtonmultiplication.Text = "*";
+            this.numericInputButtonmultiplication.UseVisualStyleBackColor = true;
+            this.numericInputButtonmultiplication.Click += new System.EventHandler(this.numericInputButtonmultiplication_Click);
+            // 
+            // numericInputButtonminus
+            // 
+            this.numericInputButtonminus.Location = new System.Drawing.Point(204, 81);
+            this.numericInputButtonminus.Name = "numericInputButtonminus";
+            this.numericInputButtonminus.Size = new System.Drawing.Size(60, 32);
+            this.numericInputButtonminus.TabIndex = 12;
+            this.numericInputButtonminus.Text = "-";
+            this.numericInputButtonminus.UseVisualStyleBackColor = true;
+            this.numericInputButtonminus.Click += new System.EventHandler(this.numericInputButtonminus_Click);
+            // 
+            // numericInputButtonplus
+            // 
+            this.numericInputButtonplus.Location = new System.Drawing.Point(204, 42);
+            this.numericInputButtonplus.Name = "numericInputButtonplus";
+            this.numericInputButtonplus.Size = new System.Drawing.Size(61, 33);
+            this.numericInputButtonplus.TabIndex = 11;
+            this.numericInputButtonplus.Text = "+";
+            this.numericInputButtonplus.UseVisualStyleBackColor = true;
+            this.numericInputButtonplus.Click += new System.EventHandler(this.numericInputButtonplus_Click);
             // 
             // numericInputButton11
             // 
@@ -188,45 +231,9 @@
             this.numericInputButton1.UseVisualStyleBackColor = true;
             this.numericInputButton1.Click += new System.EventHandler(this.numericInputButton1_Click);
             // 
-            // numericInputButtonplus
+            // errorProvider1
             // 
-            this.numericInputButtonplus.Location = new System.Drawing.Point(204, 42);
-            this.numericInputButtonplus.Name = "numericInputButtonplus";
-            this.numericInputButtonplus.Size = new System.Drawing.Size(61, 33);
-            this.numericInputButtonplus.TabIndex = 11;
-            this.numericInputButtonplus.Text = "+";
-            this.numericInputButtonplus.UseVisualStyleBackColor = true;
-            this.numericInputButtonplus.Click += new System.EventHandler(this.numericInputButtonplus_Click);
-            // 
-            // numericInputButtonminus
-            // 
-            this.numericInputButtonminus.Location = new System.Drawing.Point(204, 81);
-            this.numericInputButtonminus.Name = "numericInputButtonminus";
-            this.numericInputButtonminus.Size = new System.Drawing.Size(60, 32);
-            this.numericInputButtonminus.TabIndex = 12;
-            this.numericInputButtonminus.Text = "-";
-            this.numericInputButtonminus.UseVisualStyleBackColor = true;
-            this.numericInputButtonminus.Click += new System.EventHandler(this.numericInputButtonminus_Click);
-            // 
-            // numericInputButtonmultiplication
-            // 
-            this.numericInputButtonmultiplication.Location = new System.Drawing.Point(137, 120);
-            this.numericInputButtonmultiplication.Name = "numericInputButtonmultiplication";
-            this.numericInputButtonmultiplication.Size = new System.Drawing.Size(61, 32);
-            this.numericInputButtonmultiplication.TabIndex = 13;
-            this.numericInputButtonmultiplication.Text = "*";
-            this.numericInputButtonmultiplication.UseVisualStyleBackColor = true;
-            this.numericInputButtonmultiplication.Click += new System.EventHandler(this.numericInputButtonmultiplication_Click);
-            // 
-            // numericInputButtondivision
-            // 
-            this.numericInputButtondivision.Location = new System.Drawing.Point(204, 119);
-            this.numericInputButtondivision.Name = "numericInputButtondivision";
-            this.numericInputButtondivision.Size = new System.Drawing.Size(61, 33);
-            this.numericInputButtondivision.TabIndex = 14;
-            this.numericInputButtondivision.Text = "/";
-            this.numericInputButtondivision.UseVisualStyleBackColor = true;
-            this.numericInputButtondivision.Click += new System.EventHandler(this.numericInputButtondivision_Click);
+            this.errorProvider1.ContainerControl = this;
             // 
             // universelleseingabemodul
             // 
@@ -238,6 +245,7 @@
             this.Name = "universelleseingabemodul";
             this.Text = "UniversellesEingabeModul";
             this.eingabePanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -261,5 +269,6 @@
         private NumericInputButton numericInputButtonminus;
         private NumericInputButton numericInputButtonmultiplication;
         private NumericInputButton numericInputButtondivision;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }
