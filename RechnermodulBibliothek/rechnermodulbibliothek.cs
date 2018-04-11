@@ -6,6 +6,13 @@ using System.Threading.Tasks;
 
 namespace RechnermodulBibliothek
 {
+    [Serializable()]
+    public class NutzerEingabeFehler : Exception
+    {
+        public NutzerEingabeFehler() : base() { }
+        public NutzerEingabeFehler(string message) : base(message) {  }
+    }
+
     /// <summary>
     ///  Ein Interface für die Beschreibung einer Funktion eines Modules
     /// </summary>
@@ -67,10 +74,44 @@ namespace RechnermodulBibliothek
    ///  Als Argument nimmt es die Nutzereingabe (string), überprüft diese und gibt eine Fehlermeldung
    ///  (string) zurück, wenn die Eingabe nicht angenommen wird, ansonsten null
    /// </summary>
-   /// <param name="inputToCheck">Die Eingabe des Nutzers</param>
+   /// <param name="input">Die Eingabe des Nutzers</param>
    /// <returns>Eine Fehlermeldung falls die Eingabe nicht angenommen wird, sonst null</returns>
-    public delegate string CheckCallback(string inputToCheck);
+    public delegate string Modifier(string input);
 
+
+    public class ModifierChain
+    {
+        private List<Modifier> modifiers = new List<Modifier>();
+
+        public ModifierChain() { }
+        public ModifierChain(Modifier m)
+        {
+            this.modifiers.Add(m);
+        }
+
+        public ModifierChain Add(Modifier m)
+        {
+            this.modifiers.Add(m);
+
+            return this;
+        }
+
+        public string run(string input)
+        {
+            string s = input;
+            foreach (Modifier m in this.modifiers)
+            {
+                s = m(s);
+            }
+
+            return s;
+        }
+
+        public List<Modifier> getAll()
+        {
+            return this.modifiers;
+        }
+    }
 
     /// <summary>
     ///  Das Interface für den Ersteller der Benutzeroberfläche
@@ -83,16 +124,16 @@ namespace RechnermodulBibliothek
         /// </summary>
         /// <param name="key">Der Schlüssel, unter welchem der eingegebene Wert später abgerufen werden kann</param>
         /// <param name="description">Die Beschreibung für das Eingabefeld, welche dem Nutzer angezeigt wird</param>
-        /// <param name="validator">Ein Callback welches entscheidet, ob die Eingabe angenommen wird</param>
-        void addStringInput(string key, string description, CheckCallback validator);
+        /// <param name="mc">Die Modifier, welche auf die Eingabe angewandt werden sollen</param>
+        void addStringInput(string key, string description, ModifierChain mc);
 
         /// <summary>
         ///  Diese Methode dient dazu, ein Eingabefeld für mehrere Werte hinzuzufügen
         /// </summary>
         /// <param name="key">Der Schlüssel, unter welchem die eingegebenen Weret später abgerufen werden können</param>
         /// <param name="description">Die Beschreibung für das Eingabefeld, welche dem Nutzer angezeigt wird</param>
-        /// <param name="validator">Ein Callback, welches für jeden einzelnen eingebenen Wert entscheidet, ob er angenommen wird</param>
-        void addStringArrayInput(string key, string description, CheckCallback validator);
+        /// <param name="validator">Die Modifier, welche auf jeden eiinzelnen Wert angewandt werden sollen</param>
+        void addStringArrayInput(string key, string description, ModifierChain m);
 
         UIElement[] getUIElements();
     }
@@ -105,14 +146,14 @@ namespace RechnermodulBibliothek
         private int type;
         private string key;
         private string description;
-        private CheckCallback validator;
+        private ModifierChain mc;
 
-        public UIElement(int type, string key, string description, CheckCallback validator)
+        public UIElement(int type, string key, string description, ModifierChain mc)
         {
             this.type = type;
             this.key = key;
             this.description = description;
-            this.validator = validator;
+            this.mc = mc;
         }
 
         public int getType()
@@ -130,9 +171,9 @@ namespace RechnermodulBibliothek
             return this.description;
         }
 
-        public CheckCallback getValidator()
+        public ModifierChain getModifiers()
         {
-            return this.validator;
+            return this.mc;
         }
     }
 

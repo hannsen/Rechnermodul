@@ -10,6 +10,8 @@ using System.Windows.Forms;
 
 namespace Rechnermodul
 {
+    public class DatenNichtValideFehler : Exception { }
+
     public partial class universelleseingabemodul : Form
     {
         private RechnermodulBibliothek.UIElement[] elements;
@@ -113,41 +115,47 @@ namespace Rechnermodul
                     TextBox tb = new TextBox();
                     tb.Name = "tb_" + element.getKey();
                     tb.Left = 0;
+                    tb.Width = funktionsPanel.Width - 20;
                     tb.Top = y;
                     tb.Show();
+                    tb.Validating += (sender, e) => { this.validate_single_entry(tb, element.getModifiers()); };
                     funktionsPanel.Controls.Add(tb);
                     y += 25;
                 }
                 else
                 {
                     Button btn_add = new Button();
-                    btn_add.Text = "Add";
                     Button btn_rm = new Button();
-                    btn_rm.Text = "Del";
-
-                    btn_add.Left = 0;
-                    btn_add.Top = y;
-                    btn_add.Width = 50;
-                    btn_add.Click += (sender, e) => this.add_clicked(element.getKey(), element.getValidator());
-                    btn_rm.Left = 50;
-                    btn_rm.Top = y;
-                    btn_rm.Width = 50;
-                    btn_rm.Click += (sender, e) => this.del_clicked(element.getKey());
-
-                    btn_add.Show();
-                    btn_rm.Show();
-
                     TextBox tb_new = new TextBox();
+                    ListBox lb = new ListBox();
+
                     tb_new.Name = "tb_" + element.getKey();
-                    tb_new.Top = y + 30;
+                    tb_new.Top = y;
+                    tb_new.Left = 50;
+                    tb_new.Width = funktionsPanel.Width - 75;
+                    tb_new.Validating += (sender, e) => { this.validate_single_entry(tb_new, element.getModifiers()); };
                     tb_new.Show();
 
-                    ListBox lb = new ListBox();
+                    btn_add.Text = "Add";
+                    btn_add.Left = 0;
+                    btn_add.Top = y + (tb_new.Height - btn_add.Height) / 2;
+                    btn_add.Width = 40;
+                    btn_add.Click += (sender, e) => this.add_clicked(element.getKey(), element.getModifiers());
+                    btn_add.Show();
+
+                    btn_rm.Text = "Del";
+                    btn_rm.Left = 0;
+                    btn_rm.Top = y + 30;
+                    btn_rm.Width = 40;
+                    btn_rm.Click += (sender, e) => this.del_clicked(element.getKey());
+                    btn_rm.Show();
+
                     lb.Name = "lb_" + element.getKey();
-                    lb.Top = y;
-                    lb.Left = 100;
+                    lb.Top = y + 30;
+                    lb.Left = tb_new.Left;
+                    lb.Width = tb_new.Width;
                     lb.Height = 100;
-                    y += 100;
+                    y += 130;
 
                     funktionsPanel.Controls.Add(btn_add);
                     funktionsPanel.Controls.Add(btn_rm);
@@ -162,11 +170,19 @@ namespace Rechnermodul
             this.Size = new Size(this.Size.Width, eingabePanel.Height + funktionsPanel.Height + 50);
         }
 
-        public void validate_input(RechnermodulBibliothek.CheckCallback cb, ErrorProvider ep)
+        private void validate_single_entry(TextBox tb, RechnermodulBibliothek.ModifierChain mc)
         {
+            try
+            {
+                tb.Text = mc.run(tb.Text);
+                errorProvider1.SetError(tb, "");
+            } catch (RechnermodulBibliothek.NutzerEingabeFehler e)
+            {
+                errorProvider1.SetError(tb, e.Message);
+            }
         }
 
-        public void add_clicked(string key, RechnermodulBibliothek.CheckCallback cb)
+        public void add_clicked(string key, RechnermodulBibliothek.ModifierChain mc)
         {
             ListBox lb = null;
             TextBox tb = null;
@@ -188,14 +204,10 @@ namespace Rechnermodul
 
             if (lb != null && tb != null)
             {
-                string err;
-                if (cb == null || ((err = cb(tb.Text)) == null))
+               if (errorProvider1.GetError(tb) == "")
                 {
-                    lb.Items.Add(tb.Text);
-
-                    return;
+                    lb.Items.Add(mc.run(tb.Text));
                 }
-                MessageBox.Show(err);
             }
         }
 
@@ -226,11 +238,19 @@ namespace Rechnermodul
                 if (c.Name.StartsWith("tb_"))
                 {
                     TextBox tb = (TextBox)c;
+                    if (errorProvider1.GetError(tb) != "")
+                    {
+                        throw new DatenNichtValideFehler();
+                    }
                     values.Add(tb.Name.Replace("tb_", ""), tb.Text);
                 }
                 else if (c.Name.StartsWith("lb_"))
                 {
                     ListBox lb = (ListBox)c;
+                    if (lb.Items.Count == 0)
+                    {
+                        throw new DatenNichtValideFehler();
+                    }
                     string[] v = new string[lb.Items.Count];
                     for (int i = 0; i < lb.Items.Count; i++)
                     {
