@@ -275,4 +275,38 @@ namespace RechnermodulBibliothek
             this.functionDescs.Add(desc);
         }
     }
+
+    public class Modifiers
+    {
+        public static string NotEmptyModifier(string s)
+        {
+            if (s == "")
+            {
+                throw new NutzerEingabeFehler("Darf nicht leer sein");
+            }
+
+            return s;
+        }
+
+        public static string DoubleModifier(string s)
+        {
+            double d;
+            if (double.TryParse(s, out d))
+            {
+                return d.ToString();
+            }
+            throw new NutzerEingabeFehler("Muss eine Kommazahl sein");
+        }
+
+        public static string CalculateModifier(string s)
+        {
+            try
+            {
+                return Grundrechner.calculate(s);
+            } catch(Exception e)
+            {
+                throw new NutzerEingabeFehler(e.Message);
+            }
+        }
+    }
 }

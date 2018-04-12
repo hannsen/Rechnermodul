@@ -10,8 +10,6 @@ using System.Windows.Forms;
 
 namespace Rechnermodul
 {
-    public class DatenNichtValideFehler : Exception { }
-
     public partial class universelleseingabemodul : Form
     {
         private RechnermodulBibliothek.UIElement[] elements;
@@ -344,6 +342,9 @@ namespace Rechnermodul
             this.add_string_in_current_control("/");
         }
     }
+
+    public class DatenNichtValideFehler : Exception { }
+
 
     public class NumericInputButton : Button
     {

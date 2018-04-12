@@ -33,11 +33,14 @@ namespace DummyModul
 
         void RechnermodulBibliothek.FunctionInterface.buildUI(UIBuilderInterface builder)
         {
-            builder.addStringInput("s1", "Summand1", new ModifierChain(this.intChecker));
-            builder.addStringInput("s2", "Summand2", new ModifierChain(this.intChecker));
-            builder.addStringArrayInput("s3", "restlichen Summanden", new ModifierChain(this.intChecker));
-            builder.addStringArrayInput("s4", "weitere Summanden", new ModifierChain(this.intChecker));
-            builder.addStringArrayInput("s5", "mehr Summanden", new ModifierChain(this.intChecker));
+            ModifierChain mc = new ModifierChain(Modifiers.NotEmptyModifier).
+                Add(Modifiers.CalculateModifier);
+
+            builder.addStringInput("s1", "Summand1", mc);
+            builder.addStringInput("s2", "Summand2", mc);
+            builder.addStringArrayInput("s3", "restlichen Summanden", mc);
+            builder.addStringArrayInput("s4", "weitere Summanden", mc);
+            builder.addStringArrayInput("s5", "mehr Summanden", mc);
 
         }
 
