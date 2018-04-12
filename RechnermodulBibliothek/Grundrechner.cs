@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RechnermodulBibliothek
 {
-    class Grundrechner
+    public class Grundrechner
     {
         public static string calculate(string data)
         {

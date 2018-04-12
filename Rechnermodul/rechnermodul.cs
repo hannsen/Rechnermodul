@@ -70,6 +70,8 @@ namespace Rechnermodul
                 }
             }
 
+            modules.Add(new GrundrechenModul());
+
             return modules.ToArray<RechnermodulBibliothek.ModulInterface>();
         }
 

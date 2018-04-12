@@ -32,11 +32,9 @@ namespace Prozentrechnung
 
         void RechnermodulBibliothek.FunctionInterface.buildUI(UIBuilderInterface builder)
         {
-            
-            RechnermodulBibliothek.CheckCallback checkDoubleInputDelegate = new RechnermodulBibliothek.CheckCallback((new CheckCallbackLib()).checkDoubleInput);
-
-            builder.addStringInput("baseVal", "Grundwert für die Rechnung", checkDoubleInputDelegate);
-            builder.addStringInput("percentVal", "Prozentwert für die Rechnung", checkDoubleInputDelegate);
+            ModifierChain mc = new ModifierChain(Modifiers.NotEmptyModifier).Add(Modifiers.CalculateModifier);
+            builder.addStringInput("baseVal", "Grundwert für die Rechnung", mc);
+            builder.addStringInput("percentVal", "Prozentwert für die Rechnung", mc);
 
         }
 
@@ -62,10 +60,10 @@ namespace Prozentrechnung
         void RechnermodulBibliothek.FunctionInterface.buildUI(UIBuilderInterface builder)
         {
 
-            RechnermodulBibliothek.CheckCallback checkDoubleInputDelegate = new RechnermodulBibliothek.CheckCallback((new CheckCallbackLib()).checkDoubleInput);
+            ModifierChain mc = new ModifierChain(Modifiers.NotEmptyModifier).Add(Modifiers.CalculateModifier);
 
-            builder.addStringInput("baseVal", "Grundwert für die Rechnung", checkDoubleInputDelegate);
-            builder.addStringInput("percentVal", "Prozentwert für die Rechnung", checkDoubleInputDelegate);
+            builder.addStringInput("baseVal", "Grundwert für die Rechnung", mc);
+            builder.addStringInput("percentVal", "Prozentwert für die Rechnung", mc);
 
         }
 
@@ -91,10 +89,10 @@ namespace Prozentrechnung
         void RechnermodulBibliothek.FunctionInterface.buildUI(UIBuilderInterface builder)
         {
 
-            RechnermodulBibliothek.CheckCallback checkDoubleInputDelegate = new RechnermodulBibliothek.CheckCallback((new CheckCallbackLib()).checkDoubleInput);
+            ModifierChain mc = new ModifierChain(Modifiers.NotEmptyModifier).Add(Modifiers.CalculateModifier);
 
-            builder.addStringInput("baseVal", "Grundwert für die Rechnung", checkDoubleInputDelegate);
-            builder.addStringInput("percentVal", "Prozentwert für die Rechnung", checkDoubleInputDelegate);
+            builder.addStringInput("baseVal", "Grundwert für die Rechnung", mc);
+            builder.addStringInput("percentVal", "Prozentwert für die Rechnung", mc);
 
         }
 
@@ -125,9 +123,9 @@ namespace Prozentrechnung
         void RechnermodulBibliothek.FunctionInterface.buildUI(UIBuilderInterface builder)
         {
 
-            RechnermodulBibliothek.CheckCallback checkDoubleInputDelegate = new RechnermodulBibliothek.CheckCallback((new CheckCallbackLib()).checkDoubleInput);
+            ModifierChain mc = new ModifierChain(Modifiers.NotEmptyModifier).Add(Modifiers.CalculateModifier);
 
-            builder.addStringInput("baseVal", "Bruttowert für die Rechnung", checkDoubleInputDelegate);
+            builder.addStringInput("baseVal", "Bruttowert für die Rechnung", mc);
 
         }
 

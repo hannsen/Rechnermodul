@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GrundrechenModul.cs" />
     <Compile Include="universelleseingabemodul.cs">
       <SubType>Component</SubType>
     </Compile>
