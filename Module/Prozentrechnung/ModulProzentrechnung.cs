@@ -114,38 +114,10 @@ namespace Prozentrechnung
 
     }
 
-    public class ProzentSatzFnc : FunctionInterface
-    {
+    //public class ProzentSatzFnc : FunctionInterface
+    //{
 
-        void RechnermodulBibliothek.FunctionInterface.buildUI(UIBuilderInterface builder)
-        {
-
-            RechnermodulBibliothek.CheckCallback checkDoubleInputDelegate = new RechnermodulBibliothek.CheckCallback((new CheckCallbackLib()).checkDoubleInput);
-
-            builder.addStringInput("baseVal", "Grundwert für die Rechnung", checkDoubleInputDelegate);
-            builder.addStringInput("percentVal", "Prozentwert für die Rechnung", checkDoubleInputDelegate);
-
-        }
-
-        string FunctionInterface.calculate(UserDataInterface data)
-        {
-            double grundWert;
-            double prozentWert;
-
-            String resStr = "(100 / @GW@) * @PW@";
-
-            grundWert = Convert.ToDouble(data.getStringValue("baseVal"));
-            prozentWert = Convert.ToDouble(data.getStringValue("percentVal"));
-
-            double res = (100 / grundWert) * prozentWert;
-
-            resStr = resStr.Replace("@GW@", grundWert.ToString()).Replace("@PW@", prozentWert.ToString()) + " = " + String.Format("{0:f}", res) + " %";
-
-            return resStr;
-
-        }
-
-    }
+    //}
 
     public class NettoAusBruttoFnc : FunctionInterface
     {
@@ -171,46 +143,16 @@ namespace Prozentrechnung
 
             double res = grundWert / (1 + mwst);
 
-
-            resStr = resStr.Replace("@BRUTTO@", grundWert.ToString()).Replace("@MWST@", mwst.ToString()) + " = " + String.Format("{0:f}", res);
-
-            return resStr;
-        }
-
-    }
-
-    public class BruttoAusNettoFnc : FunctionInterface
-    {
-
-        void RechnermodulBibliothek.FunctionInterface.buildUI(UIBuilderInterface builder)
-        {
-
-            RechnermodulBibliothek.CheckCallback checkDoubleInputDelegate = new RechnermodulBibliothek.CheckCallback((new CheckCallbackLib()).checkDoubleInput);
-
-            builder.addStringInput("baseVal", "Nettowert für die Rechnung", checkDoubleInputDelegate);
-
-        }
-
-        string FunctionInterface.calculate(UserDataInterface data)
-        {
-
-            double grundWert;
-
-            String resStr = "(@NETTO@ * @MWST@) + @NETTO@";
-
-            grundWert = Convert.ToDouble(data.getStringValue("baseVal"));
-
-            double mwst = 0.19;
-
-            double res = (grundWert * mwst) + grundWert;
-
-            resStr = resStr.Replace("@NETTO@", grundWert.ToString()).Replace("@MWST@", mwst.ToString()) + " = " + String.Format("{0:f}", res);
-
-            return resStr;
+            return res.ToString();
 
         }
 
     }
+
+    //public class BruttoAusNettoFnc : FunctionInterface
+    //{
+        
+    //}
 
     public class CheckCallbackLib
     {
