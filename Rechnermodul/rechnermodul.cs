@@ -117,7 +117,14 @@ namespace Rechnermodul
             uem.buildUi(builder);
             uem.ShowDialog();
 
-            lb_Ergebnis.Items.Add(function.calculate(uem.getData()));
+            try
+            {
+                lb_Ergebnis.Items.Add(function.calculate(uem.getData()));
+            } catch (DatenNichtValideFehler)
+            {
+
+            }
+
 
         }
     }
@@ -126,16 +133,16 @@ namespace Rechnermodul
     {
         private List<UIElement> elements = new List<UIElement>();
 
-        void RechnermodulBibliothek.UIBuilderInterface.addStringArrayInput(string key, string description, CheckCallback validator)
+        void RechnermodulBibliothek.UIBuilderInterface.addStringArrayInput(string key, string description, RechnermodulBibliothek.ModifierChain mc)
         {
-            UIElement element = new UIElement(UIElement.TYPE_ARRAY, key, description, validator);
+            UIElement element = new UIElement(UIElement.TYPE_ARRAY, key, description, mc);
 
             this.elements.Add(element);
         }
 
-        void RechnermodulBibliothek.UIBuilderInterface.addStringInput(string key, string description, CheckCallback validator)
+        void RechnermodulBibliothek.UIBuilderInterface.addStringInput(string key, string description, RechnermodulBibliothek.ModifierChain mc)
         {
-            UIElement element = new UIElement(UIElement.TYPE_SINGLE, key, description, validator);
+            UIElement element = new UIElement(UIElement.TYPE_SINGLE, key, description, mc);
 
             this.elements.Add(element);
         }

@@ -26,18 +26,21 @@ namespace DummyModul
             int x;
             if (int.TryParse(s, out x))
             {
-                return null;
+                return s;
             }
-            return "Fehler, ist halt keine Zahl";
+            throw new NutzerEingabeFehler("Ist keine Zahl");
         }
 
         void RechnermodulBibliothek.FunctionInterface.buildUI(UIBuilderInterface builder)
         {
-            builder.addStringInput("s1", "Summand1", this.intChecker);
-            builder.addStringInput("s2", "Summand2", this.intChecker);
-            builder.addStringArrayInput("s3", "restlichen Summanden", this.intChecker);
-            builder.addStringArrayInput("s4", "weitere Summanden", this.intChecker);
-            builder.addStringArrayInput("s5", "mehr Summanden", this.intChecker);
+            ModifierChain mc = new ModifierChain(Modifiers.NotEmptyModifier).
+                Add(Modifiers.CalculateModifier);
+
+            builder.addStringInput("s1", "Summand1", mc);
+            builder.addStringInput("s2", "Summand2", mc);
+            builder.addStringArrayInput("s3", "restlichen Summanden", mc);
+            builder.addStringArrayInput("s4", "weitere Summanden", mc);
+            builder.addStringArrayInput("s5", "mehr Summanden", mc);
 
         }
 
