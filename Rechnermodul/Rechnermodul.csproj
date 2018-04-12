@@ -47,8 +47,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GrundrechenModul.cs" />
     <Compile Include="universelleseingabemodul.cs">
-      <SubType>Component</SubType>
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="universelleseingabemodul.Designer.cs">
       <DependentUpon>universelleseingabemodul.cs</DependentUpon>

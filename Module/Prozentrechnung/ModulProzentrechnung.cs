@@ -7,6 +7,7 @@ using RechnermodulBibliothek;
 
 namespace Prozentrechnung
 {
+
     public class ModulProzentrechnung : RechnermodulBibliothek.AbstractModule
     {
 
@@ -19,9 +20,9 @@ namespace Prozentrechnung
             this.addFunction("%dazu", "", new ProzentDazuFnc());
             this.addFunction("%weg", "", new ProzentWegFnc());
             this.addFunction("%davon", "", new ProzentDavonFnc());
-            //this.addFunction("%Satz", "", new ProzentSatzFnc());
+            this.addFunction("%Satz", "", new ProzentSatzFnc());
             this.addFunction("Netto aus Brutto", "", new NettoAusBruttoFnc());
-            //this.addFunction("Brutto aus Netto", "", new BruttoAusNettoFnc());
+            this.addFunction("Brutto aus Netto", "", new BruttoAusNettoFnc());
 
         }
 
@@ -32,11 +33,10 @@ namespace Prozentrechnung
 
         void RechnermodulBibliothek.FunctionInterface.buildUI(UIBuilderInterface builder)
         {
-            
-            RechnermodulBibliothek.CheckCallback checkDoubleInputDelegate = new RechnermodulBibliothek.CheckCallback((new CheckCallbackLib()).checkDoubleInput);
+            ModifierChain mc = new ModifierChain(Modifiers.NotEmptyModifier).Add(Modifiers.CalculateModifier);
 
-            builder.addStringInput("baseVal", "Grundwert für die Rechnung", checkDoubleInputDelegate);
-            builder.addStringInput("percentVal", "Prozentwert für die Rechnung", checkDoubleInputDelegate);
+            builder.addStringInput("baseVal", "Grundwert für die Rechnung", mc);
+            builder.addStringInput("percentVal", "Prozentwert für die Rechnung", mc);
 
         }
 
@@ -61,11 +61,10 @@ namespace Prozentrechnung
 
         void RechnermodulBibliothek.FunctionInterface.buildUI(UIBuilderInterface builder)
         {
+            ModifierChain mc = new ModifierChain(Modifiers.NotEmptyModifier).Add(Modifiers.CalculateModifier);
 
-            RechnermodulBibliothek.CheckCallback checkDoubleInputDelegate = new RechnermodulBibliothek.CheckCallback((new CheckCallbackLib()).checkDoubleInput);
-
-            builder.addStringInput("baseVal", "Grundwert für die Rechnung", checkDoubleInputDelegate);
-            builder.addStringInput("percentVal", "Prozentwert für die Rechnung", checkDoubleInputDelegate);
+            builder.addStringInput("baseVal", "Grundwert für die Rechnung", mc);
+            builder.addStringInput("percentVal", "Prozentwert für die Rechnung", mc);
 
         }
 
@@ -90,11 +89,10 @@ namespace Prozentrechnung
 
         void RechnermodulBibliothek.FunctionInterface.buildUI(UIBuilderInterface builder)
         {
+            ModifierChain mc = new ModifierChain(Modifiers.NotEmptyModifier).Add(Modifiers.CalculateModifier);
 
-            RechnermodulBibliothek.CheckCallback checkDoubleInputDelegate = new RechnermodulBibliothek.CheckCallback((new CheckCallbackLib()).checkDoubleInput);
-
-            builder.addStringInput("baseVal", "Grundwert für die Rechnung", checkDoubleInputDelegate);
-            builder.addStringInput("percentVal", "Prozentwert für die Rechnung", checkDoubleInputDelegate);
+            builder.addStringInput("baseVal", "Grundwert für die Rechnung", mc);
+            builder.addStringInput("percentVal", "Prozentwert für die Rechnung", mc);
 
         }
 
@@ -119,11 +117,10 @@ namespace Prozentrechnung
 
         void RechnermodulBibliothek.FunctionInterface.buildUI(UIBuilderInterface builder)
         {
+            ModifierChain mc = new ModifierChain(Modifiers.NotEmptyModifier).Add(Modifiers.CalculateModifier);
 
-            RechnermodulBibliothek.CheckCallback checkDoubleInputDelegate = new RechnermodulBibliothek.CheckCallback((new CheckCallbackLib()).checkDoubleInput);
-
-            builder.addStringInput("baseVal", "Grundwert für die Rechnung", checkDoubleInputDelegate);
-            builder.addStringInput("percentVal", "Prozentwert für die Rechnung", checkDoubleInputDelegate);
+            builder.addStringInput("baseVal", "Grundwert für die Rechnung", mc);
+            builder.addStringInput("percentVal", "Prozentwert für die Rechnung", mc);
 
         }
 
@@ -152,10 +149,9 @@ namespace Prozentrechnung
 
         void RechnermodulBibliothek.FunctionInterface.buildUI(UIBuilderInterface builder)
         {
+            ModifierChain mc = new ModifierChain(Modifiers.NotEmptyModifier).Add(Modifiers.CalculateModifier);
 
-            RechnermodulBibliothek.CheckCallback checkDoubleInputDelegate = new RechnermodulBibliothek.CheckCallback((new CheckCallbackLib()).checkDoubleInput);
-
-            builder.addStringInput("baseVal", "Bruttowert für die Rechnung", checkDoubleInputDelegate);
+            builder.addStringInput("baseVal", "Bruttowert für die Rechnung", mc);
 
         }
 
@@ -171,10 +167,10 @@ namespace Prozentrechnung
 
             double res = grundWert / (1 + mwst);
 
-
             resStr = resStr.Replace("@BRUTTO@", grundWert.ToString()).Replace("@MWST@", mwst.ToString()) + " = " + String.Format("{0:f}", res);
 
             return resStr;
+
         }
 
     }
@@ -184,10 +180,9 @@ namespace Prozentrechnung
 
         void RechnermodulBibliothek.FunctionInterface.buildUI(UIBuilderInterface builder)
         {
+            ModifierChain mc = new ModifierChain(Modifiers.NotEmptyModifier).Add(Modifiers.CalculateModifier);
 
-            RechnermodulBibliothek.CheckCallback checkDoubleInputDelegate = new RechnermodulBibliothek.CheckCallback((new CheckCallbackLib()).checkDoubleInput);
-
-            builder.addStringInput("baseVal", "Nettowert für die Rechnung", checkDoubleInputDelegate);
+            builder.addStringInput("baseVal", "Nettowert für die Rechnung", mc);
 
         }
 
@@ -210,38 +205,5 @@ namespace Prozentrechnung
 
         }
 
-    }
-
-    public class CheckCallbackLib
-    {
-
-        //private static volatile CheckCallbackLib INSTANCE;
-
-        //private CheckCallbackLib() { }
-
-        //public static CheckCallbackLib Instance
-        //{
-
-        //    get
-        //    {
-        //        if (INSTANCE == null)
-        //            INSTANCE = new CheckCallbackLib();
-
-        //        return INSTANCE;
-        //    }           
-
-        //}
-
-        public string checkDoubleInput(string input)
-        {
-            double res;
-
-            if (Double.TryParse(input, out res))
-            {
-                return null;
-            }
-
-            return "Eingabe: " + input + " ist nicht zulässig! (Eingabe muss den Anforderungen einer Gleitkommazahl genügen!)";
-        }
     }
 }
