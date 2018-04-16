@@ -236,7 +236,7 @@ namespace Rechnermodul
                 if (c.Name.StartsWith("tb_"))
                 {
                     TextBox tb = (TextBox)c;
-                    if (errorProvider1.GetError(tb) != "")
+                    if (errorProvider1.GetError(tb) != "" || tb.Text == "")
                     {
                         throw new DatenNichtValideFehler();
                     }
