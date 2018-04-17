@@ -7,8 +7,8 @@
 |2| 06-08.02.2018 |Projektstrukturplan verfassen - Felix - 6h|Abklären von Zeitabteilung|
 |2| 08.02.2018 |Projektstrukturplan überprüfen - Ben - 2h||
 |2| 08.02.2018 |Projekttagebucheintrag verfassen - Jan - 2h||
-|3| 09-16.04.2018 |Prototyping der GUI & Beratung - Karsten 6-||
-|3| 16.04.2018 |Beratungsprotokoll -  Jan - 2h||
+|3| 09-16.04.2018 |Prototyping der GUI & Beratung - Karsten - 6h||
+|3| 16.04.2018 |Beratungsprotokoll - Jan - 2h||
 |3| 09-11.04.2018 |Projektplan - Ben - 6h||
 |3| 09-13.04.2018 |GUI-Prototyp der proprietären Module - Karsten, Felix, Jan||
 |3| 17-20.04.2018 |Ben krank||
