@@ -12,3 +12,4 @@
 |3| 09-11.04.2018 |Projektplan - Ben - 6h||
 |3| 09-13.04.2018 |GUI-Prototyp der proprietären Module - Karsten, Felix, Jan||
 |3| 17-20.04.2018 |Ben krank||
+|4| 23-25.05.2018 |Jonathan krank||
