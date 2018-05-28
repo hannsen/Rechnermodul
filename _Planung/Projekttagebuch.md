@@ -14,3 +14,5 @@
 |3| 17-20.04.2018 |Ben krank||
 |4| 23-25.05.2018 |Jonathan krank||
 |4| 23-25.05.2018 |Analytisches Klassendiagramm - Felix 4h||
+|5| 29-31.05.2018 | Module Implimentieren - Ben, Jonathan 6h||
+|5| 28-01.06.2018 | Testen und Implimentieren - Karsten, Felix, Jan 8h||
