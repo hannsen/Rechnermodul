@@ -13,7 +13,8 @@
 |3| 09-13.04.2018 |GUI-Prototyp der proprietären Module - Karsten, Felix, Jan||
 |3| 17-20.04.2018 |Ben krank||
 |4| 23-25.05.2018 |Jonathan krank||
-|4| 23-25.05.2018 |Analytisches Klassendiagramm - Felix 4h||
+|4| 23-25.05.2018 |Analytisches Klassendiagramm - Felix 6h, Jonathan 2h||
 |4| 23-25.05.2018 |Pflichtenheft - Jan, Ben 6h||
-|5| 29-31.05.2018 | Module implementieren - Ben, Jonathan 6h||
+|5| 29-31.05.2018 | Module implementieren - Ben 6h||
+|5| 29-31.05.2018 | Testbedingungen - Jonathan 6h, Karsten 2h||
 |5| 28-01.06.2018 | Testen und implementieren - Karsten, Felix, Jan 8h||
