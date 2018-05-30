@@ -17,4 +17,4 @@
 |4| 23-25.05.2018 |Pflichtenheft - Jan, Ben 6h||
 |5| 29-31.05.2018 | Module implementieren - Ben 6h||
 |5| 29-31.05.2018 | Testbedingungen - Jonathan 6h, Karsten 2h||
-|5| 28-01.06.2018 | Testen und implementieren - Karsten, Felix, Jan 8h||
+|5| 28.05.2018-01.06.2018 | Testen und implementieren - Karsten, Felix, Jan 8h||
