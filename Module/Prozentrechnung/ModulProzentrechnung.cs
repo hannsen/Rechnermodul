@@ -129,12 +129,12 @@ namespace Prozentrechnung
             double grundWert;
             double prozentWert;
 
-            String resStr = "(100 / @GW@) * @PW@";
+            String resStr = "(@GW@ / 100) * @PW@";
 
             grundWert = Convert.ToDouble(data.getStringValue("baseVal"));
             prozentWert = Convert.ToDouble(data.getStringValue("percentVal"));
 
-            double res = (100 / grundWert) * prozentWert;
+            double res = (grundWert / 100) * prozentWert;
 
             resStr = resStr.Replace("@GW@", grundWert.ToString()).Replace("@PW@", prozentWert.ToString()) + " = " + String.Format("{0:f}", res) + " %";
 
