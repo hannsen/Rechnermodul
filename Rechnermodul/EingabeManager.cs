@@ -51,7 +51,7 @@ namespace Rechnermodul
 
             foreach (UIElement element in uiElements)
             {
-                if (element.getType() == UIElement.TYPE_ARRAY)
+                if (element.getType() == UIElement.TYPE_SINGLE)
                 {
                     stringValues[element.getKey()] = "";
                 }
