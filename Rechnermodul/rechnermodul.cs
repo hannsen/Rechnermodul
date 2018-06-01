@@ -129,7 +129,8 @@ namespace Rechnermodul
                 lb_Ergebnis.Items.Add(function.calculate(data));
             } catch (Exception err)
             {
-                lb_Ergebnis.Items.Add(err.Message);
+                lb_Ergebnis.Items.Add(err.Message + err.StackTrace);
+                Console.Write(err.StackTrace);
             }
 
 

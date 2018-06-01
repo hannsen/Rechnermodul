@@ -33,7 +33,7 @@ namespace Prozentrechnung
 
         void RechnermodulBibliothek.FunctionInterface.buildUI(UIBuilderInterface builder)
         {
-            ModifierChain mc = new ModifierChain(Modifiers.NotEmptyModifier).Add(Modifiers.CalculateModifier);
+            ModifierChain mc = new ModifierChain(Modifiers.NotEmptyModifier).Add(Modifiers.DoubleModifier);
 
             builder.addStringInput("baseVal", "Grundwert für die Rechnung", mc);
             builder.addStringInput("percentVal", "Prozentwert für die Rechnung", mc);
@@ -45,6 +45,7 @@ namespace Prozentrechnung
             double grundWert;
             double prozentWert;
 
+            Console.Write(data.getStringValue("baseVal"));
             grundWert = Convert.ToDouble(data.getStringValue("baseVal"));
             prozentWert = Convert.ToDouble(data.getStringValue("percentVal"));
 
@@ -61,7 +62,7 @@ namespace Prozentrechnung
 
         void RechnermodulBibliothek.FunctionInterface.buildUI(UIBuilderInterface builder)
         {
-            ModifierChain mc = new ModifierChain(Modifiers.NotEmptyModifier).Add(Modifiers.CalculateModifier);
+            ModifierChain mc = new ModifierChain(Modifiers.NotEmptyModifier).Add(Modifiers.DoubleModifier);
 
             builder.addStringInput("baseVal", "Grundwert für die Rechnung", mc);
             builder.addStringInput("percentVal", "Prozentwert für die Rechnung", mc);
@@ -89,7 +90,7 @@ namespace Prozentrechnung
 
         void RechnermodulBibliothek.FunctionInterface.buildUI(UIBuilderInterface builder)
         {
-            ModifierChain mc = new ModifierChain(Modifiers.NotEmptyModifier).Add(Modifiers.CalculateModifier);
+            ModifierChain mc = new ModifierChain(Modifiers.NotEmptyModifier).Add(Modifiers.DoubleModifier);
 
             builder.addStringInput("baseVal", "Grundwert für die Rechnung", mc);
             builder.addStringInput("percentVal", "Prozentwert für die Rechnung", mc);
@@ -117,7 +118,7 @@ namespace Prozentrechnung
 
         void RechnermodulBibliothek.FunctionInterface.buildUI(UIBuilderInterface builder)
         {
-            ModifierChain mc = new ModifierChain(Modifiers.NotEmptyModifier).Add(Modifiers.CalculateModifier);
+            ModifierChain mc = new ModifierChain(Modifiers.NotEmptyModifier).Add(Modifiers.DoubleModifier);
 
             builder.addStringInput("baseVal", "Grundwert für die Rechnung", mc);
             builder.addStringInput("percentVal", "Prozentwert für die Rechnung", mc);
@@ -149,7 +150,7 @@ namespace Prozentrechnung
 
         void RechnermodulBibliothek.FunctionInterface.buildUI(UIBuilderInterface builder)
         {
-            ModifierChain mc = new ModifierChain(Modifiers.NotEmptyModifier).Add(Modifiers.CalculateModifier);
+            ModifierChain mc = new ModifierChain(Modifiers.NotEmptyModifier).Add(Modifiers.DoubleModifier);
 
             builder.addStringInput("baseVal", "Bruttowert für die Rechnung", mc);
 
@@ -180,7 +181,7 @@ namespace Prozentrechnung
 
         void RechnermodulBibliothek.FunctionInterface.buildUI(UIBuilderInterface builder)
         {
-            ModifierChain mc = new ModifierChain(Modifiers.NotEmptyModifier).Add(Modifiers.CalculateModifier);
+            ModifierChain mc = new ModifierChain(Modifiers.NotEmptyModifier).Add(Modifiers.DoubleModifier);
 
             builder.addStringInput("baseVal", "Nettowert für die Rechnung", mc);
 
