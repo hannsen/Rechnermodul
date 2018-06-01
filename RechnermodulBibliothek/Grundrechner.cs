@@ -21,7 +21,7 @@ namespace RechnermodulBibliothek
             // Actual calculation
             List<string> infixValues = InfixToArray(data);
             List<string> postfix = InfixToPostfix(infixValues);
-            return data + " = " + CalculatePostfix(postfix);
+            return CalculatePostfix(postfix);
         }
 
         static string CalculatePostfix(List<string> postfix)

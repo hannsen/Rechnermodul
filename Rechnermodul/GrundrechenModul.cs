@@ -28,7 +28,7 @@ namespace Rechnermodul
 
         string RechnermodulBibliothek.FunctionInterface.calculate(RechnermodulBibliothek.UserDataInterface data)
         {
-            return RechnermodulBibliothek.Grundrechner.calculate(data.getStringValue("infix"));
+            return data.getStringValue("infix") + " = " + RechnermodulBibliothek.Grundrechner.calculate(data.getStringValue("infix"));
 
         }
 

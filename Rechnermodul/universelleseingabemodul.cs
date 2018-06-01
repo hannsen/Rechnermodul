@@ -195,6 +195,26 @@ namespace Rechnermodul
 
             this.Close();
         }
+
+        private void btn_nebenrechnug_Click(object sender, EventArgs e)
+        {
+            EingabeManager em = new EingabeManager();
+
+            RechnermodulBibliothek.UIBuilderInterface uiBuilder = new UIBuilder();
+
+            uiBuilder.addStringInput("infix", "Eingabe", new RechnermodulBibliothek.ModifierChain(RechnermodulBibliothek.Modifiers.NotEmptyModifier));
+
+            RechnermodulBibliothek.UserDataInterface data = em.getUserData(uiBuilder);
+
+            try
+            {
+                tb_param.Text = RechnermodulBibliothek.Grundrechner.calculate(data.getStringValue("infix"));
+            }
+            catch (Exception err)
+            {
+                tb_param.Text = err.Message;
+            }
+        }
     }
 
     public class DatenNichtValideFehler : Exception { }
