@@ -19,4 +19,4 @@
 |5| 28-31.05.2018 | Testbedingungen - Jonathan 6h, Karsten 2h||
 |5| 28.05.2018-01.06.2018 | Grundrechner implementieren - Jan 8h| Instabil gegenüber Fehleingaben, Lösung mithilfe polnischer Notation nutzen|
 |5| 28.05.2018-01.06.2018 | Prozentrechner implementieren - Felix 8h| Unklarheiten über Prozentsatz Implementation|
-|5| 28.05.2018-01.06.2018 | Basis-Rechnermodul und Eingabemodul - Karsten 8h| |
+|5| 28.05.2018-01.06.2018 | Basis-Rechnermodul und Eingabemodul - Karsten 8h| Module müssen in ein VisualStudio-Projekt integriert werden |
