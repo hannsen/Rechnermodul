@@ -33,11 +33,7 @@
             this.tb_param = new System.Windows.Forms.TextBox();
             this.lb_param_name = new System.Windows.Forms.Label();
             this.eingabePanel = new System.Windows.Forms.Panel();
-            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.btn_next_param = new System.Windows.Forms.Button();
-            this.directoryEntry1 = new System.DirectoryServices.DirectoryEntry();
-            this.panel_array = new System.Windows.Forms.Panel();
-            this.btn_next_value = new System.Windows.Forms.Button();
             this.numericInputButtondivision = new Rechnermodul.NumericInputButton();
             this.numericInputButtonmultiplication = new Rechnermodul.NumericInputButton();
             this.numericInputButtonminus = new Rechnermodul.NumericInputButton();
@@ -53,6 +49,11 @@
             this.numericInputButton3 = new Rechnermodul.NumericInputButton();
             this.numericInputButton2 = new Rechnermodul.NumericInputButton();
             this.numericInputButton1 = new Rechnermodul.NumericInputButton();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.directoryEntry1 = new System.DirectoryServices.DirectoryEntry();
+            this.panel_array = new System.Windows.Forms.Panel();
+            this.btn_next_value = new System.Windows.Forms.Button();
+            this.btn_nebenrechnug = new System.Windows.Forms.Button();
             this.funktionsPanel.SuspendLayout();
             this.eingabePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
@@ -86,6 +87,7 @@
             // 
             // eingabePanel
             // 
+            this.eingabePanel.Controls.Add(this.btn_nebenrechnug);
             this.eingabePanel.Controls.Add(this.btn_next_param);
             this.eingabePanel.Controls.Add(this.numericInputButtondivision);
             this.eingabePanel.Controls.Add(this.numericInputButtonmultiplication);
@@ -107,10 +109,6 @@
             this.eingabePanel.Size = new System.Drawing.Size(276, 210);
             this.eingabePanel.TabIndex = 1;
             // 
-            // errorProvider1
-            // 
-            this.errorProvider1.ContainerControl = this;
-            // 
             // btn_next_param
             // 
             this.btn_next_param.Location = new System.Drawing.Point(137, 163);
@@ -120,24 +118,6 @@
             this.btn_next_param.Text = "Nächster Parameter";
             this.btn_next_param.UseVisualStyleBackColor = true;
             this.btn_next_param.Click += new System.EventHandler(this.btn_next_param_Click);
-            // 
-            // panel_array
-            // 
-            this.panel_array.Controls.Add(this.btn_next_value);
-            this.panel_array.Location = new System.Drawing.Point(12, 89);
-            this.panel_array.Name = "panel_array";
-            this.panel_array.Size = new System.Drawing.Size(278, 39);
-            this.panel_array.TabIndex = 2;
-            // 
-            // btn_next_value
-            // 
-            this.btn_next_value.Location = new System.Drawing.Point(137, 3);
-            this.btn_next_value.Name = "btn_next_value";
-            this.btn_next_value.Size = new System.Drawing.Size(127, 30);
-            this.btn_next_value.TabIndex = 1;
-            this.btn_next_value.Text = "Nächster Wert";
-            this.btn_next_value.UseVisualStyleBackColor = true;
-            this.btn_next_value.Click += new System.EventHandler(this.btn_next_value_Click);
             // 
             // numericInputButtondivision
             // 
@@ -290,6 +270,38 @@
             this.numericInputButton1.UseVisualStyleBackColor = true;
             this.numericInputButton1.Click += new System.EventHandler(this.numericInputButton1_Click);
             // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
+            // panel_array
+            // 
+            this.panel_array.Controls.Add(this.btn_next_value);
+            this.panel_array.Location = new System.Drawing.Point(12, 89);
+            this.panel_array.Name = "panel_array";
+            this.panel_array.Size = new System.Drawing.Size(278, 39);
+            this.panel_array.TabIndex = 2;
+            // 
+            // btn_next_value
+            // 
+            this.btn_next_value.Location = new System.Drawing.Point(137, 3);
+            this.btn_next_value.Name = "btn_next_value";
+            this.btn_next_value.Size = new System.Drawing.Size(127, 30);
+            this.btn_next_value.TabIndex = 1;
+            this.btn_next_value.Text = "Nächster Wert";
+            this.btn_next_value.UseVisualStyleBackColor = true;
+            this.btn_next_value.Click += new System.EventHandler(this.btn_next_value_Click);
+            // 
+            // btn_nebenrechnug
+            // 
+            this.btn_nebenrechnug.Location = new System.Drawing.Point(3, 163);
+            this.btn_nebenrechnug.Name = "btn_nebenrechnug";
+            this.btn_nebenrechnug.Size = new System.Drawing.Size(128, 35);
+            this.btn_nebenrechnug.TabIndex = 16;
+            this.btn_nebenrechnug.Text = "Nebenrechnung";
+            this.btn_nebenrechnug.UseVisualStyleBackColor = true;
+            this.btn_nebenrechnug.Click += new System.EventHandler(this.btn_nebenrechnug_Click);
+            // 
             // universelleseingabemodul
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -335,5 +347,6 @@
         private System.Windows.Forms.Panel panel_array;
         private System.Windows.Forms.Button btn_next_value;
         private System.DirectoryServices.DirectoryEntry directoryEntry1;
+        private System.Windows.Forms.Button btn_nebenrechnug;
     }
 }
