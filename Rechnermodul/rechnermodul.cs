@@ -127,9 +127,9 @@ namespace Rechnermodul
             try
             {
                 lb_Ergebnis.Items.Add(function.calculate(data));
-            } catch (DatenNichtValideFehler)
+            } catch (Exception err)
             {
-
+                lb_Ergebnis.Items.Add(err.Message);
             }
 
 

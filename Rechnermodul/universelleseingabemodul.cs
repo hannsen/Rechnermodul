@@ -76,7 +76,7 @@ namespace Rechnermodul
                 eingabePanel.Top -= delta_y;
             }
 
-            lb_param_name.Text = element.getKey();
+            lb_param_name.Text = element.getDescription();
 
             this.element = element;
         }
