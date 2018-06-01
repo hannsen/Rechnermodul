@@ -115,16 +115,21 @@ namespace Rechnermodul
 
             function.buildUI(builder);
 
-            var uem = new universelleseingabemodul();
-            uem.buildUi(builder);
-            uem.ShowDialog();
+            EingabeManager em = new EingabeManager();
+
+            UserDataInterface data = em.getUserData(builder);
+
+            if (data == null)
+            {
+                return;
+            }
 
             try
             {
-                lb_Ergebnis.Items.Add(function.calculate(uem.getData()));
-            } catch (DatenNichtValideFehler)
+                lb_Ergebnis.Items.Add(function.calculate(data));
+            } catch (Exception err)
             {
-
+                lb_Ergebnis.Items.Add(err.Message);
             }
 
 

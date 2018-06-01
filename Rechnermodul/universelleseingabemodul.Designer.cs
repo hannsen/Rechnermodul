@@ -30,7 +30,14 @@
         {
             this.components = new System.ComponentModel.Container();
             this.funktionsPanel = new System.Windows.Forms.Panel();
+            this.tb_param = new System.Windows.Forms.TextBox();
+            this.lb_param_name = new System.Windows.Forms.Label();
             this.eingabePanel = new System.Windows.Forms.Panel();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.btn_next_param = new System.Windows.Forms.Button();
+            this.directoryEntry1 = new System.DirectoryServices.DirectoryEntry();
+            this.panel_array = new System.Windows.Forms.Panel();
+            this.btn_next_value = new System.Windows.Forms.Button();
             this.numericInputButtondivision = new Rechnermodul.NumericInputButton();
             this.numericInputButtonmultiplication = new Rechnermodul.NumericInputButton();
             this.numericInputButtonminus = new Rechnermodul.NumericInputButton();
@@ -46,20 +53,40 @@
             this.numericInputButton3 = new Rechnermodul.NumericInputButton();
             this.numericInputButton2 = new Rechnermodul.NumericInputButton();
             this.numericInputButton1 = new Rechnermodul.NumericInputButton();
-            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.funktionsPanel.SuspendLayout();
             this.eingabePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            this.panel_array.SuspendLayout();
             this.SuspendLayout();
             // 
             // funktionsPanel
             // 
-            this.funktionsPanel.Location = new System.Drawing.Point(15, 13);
+            this.funktionsPanel.Controls.Add(this.tb_param);
+            this.funktionsPanel.Controls.Add(this.lb_param_name);
+            this.funktionsPanel.Location = new System.Drawing.Point(12, 13);
             this.funktionsPanel.Name = "funktionsPanel";
-            this.funktionsPanel.Size = new System.Drawing.Size(276, 8);
+            this.funktionsPanel.Size = new System.Drawing.Size(279, 69);
             this.funktionsPanel.TabIndex = 0;
+            // 
+            // tb_param
+            // 
+            this.tb_param.Location = new System.Drawing.Point(3, 37);
+            this.tb_param.Name = "tb_param";
+            this.tb_param.Size = new System.Drawing.Size(259, 20);
+            this.tb_param.TabIndex = 1;
+            // 
+            // lb_param_name
+            // 
+            this.lb_param_name.AutoSize = true;
+            this.lb_param_name.Location = new System.Drawing.Point(0, 9);
+            this.lb_param_name.Name = "lb_param_name";
+            this.lb_param_name.Size = new System.Drawing.Size(82, 13);
+            this.lb_param_name.TabIndex = 0;
+            this.lb_param_name.Text = "lb_param_name";
             // 
             // eingabePanel
             // 
+            this.eingabePanel.Controls.Add(this.btn_next_param);
             this.eingabePanel.Controls.Add(this.numericInputButtondivision);
             this.eingabePanel.Controls.Add(this.numericInputButtonmultiplication);
             this.eingabePanel.Controls.Add(this.numericInputButtonminus);
@@ -75,10 +102,42 @@
             this.eingabePanel.Controls.Add(this.numericInputButton3);
             this.eingabePanel.Controls.Add(this.numericInputButton2);
             this.eingabePanel.Controls.Add(this.numericInputButton1);
-            this.eingabePanel.Location = new System.Drawing.Point(15, 27);
+            this.eingabePanel.Location = new System.Drawing.Point(12, 128);
             this.eingabePanel.Name = "eingabePanel";
-            this.eingabePanel.Size = new System.Drawing.Size(276, 224);
+            this.eingabePanel.Size = new System.Drawing.Size(276, 210);
             this.eingabePanel.TabIndex = 1;
+            // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
+            // btn_next_param
+            // 
+            this.btn_next_param.Location = new System.Drawing.Point(137, 163);
+            this.btn_next_param.Name = "btn_next_param";
+            this.btn_next_param.Size = new System.Drawing.Size(127, 36);
+            this.btn_next_param.TabIndex = 15;
+            this.btn_next_param.Text = "Nächster Parameter";
+            this.btn_next_param.UseVisualStyleBackColor = true;
+            this.btn_next_param.Click += new System.EventHandler(this.btn_next_param_Click);
+            // 
+            // panel_array
+            // 
+            this.panel_array.Controls.Add(this.btn_next_value);
+            this.panel_array.Location = new System.Drawing.Point(12, 89);
+            this.panel_array.Name = "panel_array";
+            this.panel_array.Size = new System.Drawing.Size(278, 39);
+            this.panel_array.TabIndex = 2;
+            // 
+            // btn_next_value
+            // 
+            this.btn_next_value.Location = new System.Drawing.Point(137, 3);
+            this.btn_next_value.Name = "btn_next_value";
+            this.btn_next_value.Size = new System.Drawing.Size(127, 30);
+            this.btn_next_value.TabIndex = 1;
+            this.btn_next_value.Text = "Nächster Wert";
+            this.btn_next_value.UseVisualStyleBackColor = true;
+            this.btn_next_value.Click += new System.EventHandler(this.btn_next_value_Click);
             // 
             // numericInputButtondivision
             // 
@@ -231,21 +290,21 @@
             this.numericInputButton1.UseVisualStyleBackColor = true;
             this.numericInputButton1.Click += new System.EventHandler(this.numericInputButton1_Click);
             // 
-            // errorProvider1
-            // 
-            this.errorProvider1.ContainerControl = this;
-            // 
             // universelleseingabemodul
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(291, 262);
+            this.ClientSize = new System.Drawing.Size(291, 341);
+            this.Controls.Add(this.panel_array);
             this.Controls.Add(this.eingabePanel);
             this.Controls.Add(this.funktionsPanel);
             this.Name = "universelleseingabemodul";
             this.Text = "UniversellesEingabeModul";
+            this.funktionsPanel.ResumeLayout(false);
+            this.funktionsPanel.PerformLayout();
             this.eingabePanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            this.panel_array.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -270,5 +329,11 @@
         private NumericInputButton numericInputButtonmultiplication;
         private NumericInputButton numericInputButtondivision;
         private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.TextBox tb_param;
+        private System.Windows.Forms.Label lb_param_name;
+        private System.Windows.Forms.Button btn_next_param;
+        private System.Windows.Forms.Panel panel_array;
+        private System.Windows.Forms.Button btn_next_value;
+        private System.DirectoryServices.DirectoryEntry directoryEntry1;
     }
 }
