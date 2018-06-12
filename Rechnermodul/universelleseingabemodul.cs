@@ -88,7 +88,14 @@ namespace Rechnermodul
 
         public string getData()
         {
-            return this.element.getModifiers().run(tb_param.Text);
+            try
+            {
+                return this.element.getModifiers().run(tb_param.Text);
+            } catch (RechnermodulBibliothek.NutzerEingabeFehler e)
+            {
+                errorProvider1.SetError(tb_param, e.Message);
+                return "";
+            }
         }
 
         private void universelleseingabemodul_Load(object sender, EventArgs e)
