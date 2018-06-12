@@ -2,3 +2,4 @@
 ../../../Module/Prozentrechnung/obj/Debug/Prozentrechnung.dll
 ../../../Module/SchulModul/obj/Debug/SchulModul.dll
 ../../../Module/Geometrie/obj/Debug/Geometrie.dll
+../../../Module/MathematischesModul/obj/Debug/MathematischesModul.dll
