@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Geometrie", "Module\Geometr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MathematischesModul", "Module\MathematischesModul\MathematischesModul.csproj", "{0F0F0EEB-EF4D-4AFA-9005-5970BFB3CB36}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StyleContext", "StyleContext\StyleContext.csproj", "{82AEED6E-3E1E-430A-8003-327C2B588127}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{0F0F0EEB-EF4D-4AFA-9005-5970BFB3CB36}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0F0F0EEB-EF4D-4AFA-9005-5970BFB3CB36}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0F0F0EEB-EF4D-4AFA-9005-5970BFB3CB36}.Release|Any CPU.Build.0 = Release|Any CPU
+		{82AEED6E-3E1E-430A-8003-327C2B588127}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82AEED6E-3E1E-430A-8003-327C2B588127}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82AEED6E-3E1E-430A-8003-327C2B588127}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82AEED6E-3E1E-430A-8003-327C2B588127}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

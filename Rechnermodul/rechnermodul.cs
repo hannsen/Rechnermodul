@@ -10,12 +10,11 @@ using System.Windows.Forms;
 using System.IO;
 
 using System.Reflection;
-using System.IO;
 using RechnermodulBibliothek;
 
 namespace Rechnermodul
 {
-    public partial class rechnermodul : Form
+    public partial class rechnermodul : StyleContext.StyleContextAwareForm
     {
         private class MyMenuItem : ToolStripMenuItem
         {
@@ -27,7 +26,7 @@ namespace Rechnermodul
         private RechnermodulBibliothek.ModulInterface[] modules;
         private static string MODULE_CONFIG_PATH = APP_PATH + "/../../MeineModule.txt";
 
-        public rechnermodul()
+        public rechnermodul() : base()
         {
             InitializeComponent();
         }
@@ -134,6 +133,12 @@ namespace Rechnermodul
             }
 
 
+        }
+
+        private void btn_einstellungen_Click(object sender, EventArgs e)
+        {
+            Einstellungen einstellungen = new Einstellungen();
+            einstellungen.Show();
         }
     }
 

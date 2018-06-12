@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace Rechnermodul
 {
-    public partial class universelleseingabemodul : Form
+    public partial class universelleseingabemodul : StyleContext.StyleContextAwareForm
     {
         public const int STATE_NEXT_PARAM = 1;
         public const int STATE_NEXT_VALUE= 2;
@@ -21,7 +21,7 @@ namespace Rechnermodul
 
         private RechnermodulBibliothek.UIElement element;
 
-        public universelleseingabemodul()
+        public universelleseingabemodul() : base()
         {
             InitializeComponent();
         }
