@@ -25,9 +25,15 @@ namespace SchulModul
         string RechnermodulBibliothek.FunctionInterface.calculate(RechnermodulBibliothek.UserDataInterface data)
         {
             string[] Noten = data.getStringArray("noten").ToArray();
+            int anzahl = Noten.Length;
+            double sum = 0;
+          
+            for (int i = 0; i < Noten.Length; i++)
+            {
+                sum = sum + Convert.ToDouble(Noten[i]);
+            }
 
-            return "";
-
+            return (sum / anzahl).ToString()
         }
     }
 }
