@@ -1,0 +1,43 @@
+<html>
+<head>
+    <script>
+      var laender = ["abchasien", "afghanistan", "ägypten", "albanien", "algerien", "andorra", "angola", "antigua und barbuda", "äquatorialguinea", "argentinien", "armenien", "arzach", "aserbaidschan", "äthiopien", "australien", "bahamas", "bahrain", "bangladesch", "barbados", "belgien", "belize", "benin", "bhutan", "bolivien", "bosnien und herzegowina", "botswana", "brasilien", "brunei", "bulgarien", "burkina faso", "burundi", "chile", "republik china", "china", "cookinseln", "costa rica", "dänemark", "mit färöer (fo) undgrönland (gl)", "deutschland", "dominica", "dominikanische republik", "dschibuti", "ecuador", "el salvador", "elfenbeinküste", "eritrea", "estland", "fidschi", "finnland", "frankreich", "ohne überseegebiete", "gabun", "gambia", "georgien", "ghana", "grenada", "griechenland", "guatemala", "guinea", "guinea-bissau", "guyana", "haiti", "honduras", "indien", "indonesien", "irak", "iran", "irland", "island", "israel", "italien", "jamaika", "japan", "jemen", "jordanien", "kambodscha", "kamerun", "kanada", "kap verde", "kasachstan", "katar", "kenia", "kirgisistan", "kiribati", "kolumbien", "komoren", "kongo", "korea", "nordkorea", "südkorea", "kosovo", "kroatien", "kuba", "kuwait", "laos", "lesotho", "lettland", "libanon", "liberia", "libyen", "liechtenstein", "litauen", "luxemburg", "madagaskar", "malawi", "malaysia", "malediven", "mali", "malta", "marokko", "marshallinseln", "mauretanien", "mauritius", "mexiko", "mikronesien", "moldau", "monaco", "mongolei", "montenegro", "mosambik", "myanmar", "namibia", "nauru", "nepal", "neuseeland", "nicaragua", "niederlande", "niger", "nigeria", "niue", "nordmazedonien", "nordzypern", "norwegen", "oman", "österreich", "osttimor / timor-leste", "pakistan", "palästina", "palau", "panama", "papua-neuguinea", "paraguay", "peru", "philippinen", "polen", "portugal", "ruanda", "rumänien", "russland", "salomonen", "sambia", "samoa", "san marino", "são tomé und príncipe", "saudi-arabien", "schweden", "schweiz", "senegal", "serbien", "seychellen", "sierra leone", "simbabwe", "singapur", "slowakei", "slowenien", "somalia", "somaliland", "spanien", "sri lanka", "st. kitts und nevis", "st. lucia", "st. vincent und die grenadinen", "südafrika", "sudan", "südossetien", "südsudan", "suriname", "swasiland", "syrien", "tadschikistan", "tansania", "thailand", "togo", "tonga", "transnistrien", "trinidad und tobago", "tschad", "tschechien", "tunesien", "türkei", "turkmenistan", "tuvalu", "uganda", "ukraine", "ungarn", "uruguay", "usbekistan", "vanuatu", "vatikanstadt", "venezuela", "vereinigte arabische emirate", "vereinigte staaten", "vereinigtes königreich", "vietnam", "weißrussland", "westsahara", "zentral­afrikanische republik", "zypern"];
+      var combis;
+      function bruteForce() {
+        var str = document.getElementById('str').value.toLowerCase();
+
+
+        var results = '';
+
+        for (var i = 0; i < laender.length; i++) {
+
+          var found = true;
+          var land = laender[i];
+          for (var j = 0; j < land.length; j++) {
+            var letter = land.charAt(j);
+            if(str.indexOf(letter) < 0){
+              found = false;
+            }
+          }
+          if (found) {
+            results += land + ", ";
+          }
+        }
+
+        var res = document.getElementById('res');
+        res.innerHTML = results;
+      }
+
+
+    </script>
+
+</head>
+
+<body>
+<input type="text" id="str"/>
+<button type="button" onclick="bruteForce()">Click Me!</button>
+<br>
+<div id="res"></div>
+</body>
+
+</html>
